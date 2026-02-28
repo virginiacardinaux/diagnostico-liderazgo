@@ -1,0 +1,1205 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diagnóstico de Liderazgo Consciente</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --blue-dark: #2a4984;
+    --blue-mid: #3064ad;
+    --blue-light: #cbd9ec;
+    --blue-pale: #ebf3ff;
+    --white: #ffffff;
+    --text-dark: #1a2e4a;
+    --text-mid: #4a6080;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--blue-pale);
+    color: var(--text-dark);
+    min-height: 100vh;
+  }
+
+  /* HEADER */
+  .header {
+    background: linear-gradient(135deg, var(--blue-dark) 0%, var(--blue-mid) 100%);
+    padding: 40px 20px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -20%;
+    width: 60%;
+    height: 200%;
+    background: rgba(255,255,255,0.04);
+    transform: rotate(20deg);
+    border-radius: 50%;
+  }
+  .header-tag {
+    display: inline-block;
+    background: rgba(255,255,255,0.15);
+    color: var(--blue-light);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    border-radius: 20px;
+    margin-bottom: 16px;
+  }
+  .header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 5vw, 48px);
+    color: var(--white);
+    line-height: 1.2;
+    margin-bottom: 12px;
+  }
+  .header h1 span {
+    color: var(--blue-light);
+  }
+  .header p {
+    color: rgba(255,255,255,0.8);
+    font-size: 16px;
+    max-width: 500px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  /* CONTAINER */
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 40px 20px 80px;
+  }
+
+  /* SCREENS */
+  .screen { display: none; animation: fadeIn 0.5s ease; }
+  .screen.active { display: block; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* WELCOME SCREEN */
+  .welcome-card {
+    background: var(--white);
+    border-radius: 20px;
+    padding: 48px 40px;
+    box-shadow: 0 4px 30px rgba(42,73,132,0.1);
+    text-align: center;
+  }
+  .welcome-card h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    color: var(--blue-dark);
+    margin-bottom: 16px;
+  }
+  .welcome-card p {
+    color: var(--text-mid);
+    line-height: 1.7;
+    margin-bottom: 16px;
+    font-size: 15px;
+  }
+  .welcome-card .highlight {
+    background: var(--blue-pale);
+    border-left: 4px solid var(--blue-mid);
+    padding: 16px 20px;
+    border-radius: 0 12px 12px 0;
+    text-align: left;
+    margin: 24px 0;
+    font-style: italic;
+    color: var(--blue-dark);
+    font-size: 15px;
+  }
+  .dimensions-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin: 24px 0;
+    text-align: left;
+  }
+  .dim-item {
+    background: var(--blue-pale);
+    border-radius: 10px;
+    padding: 12px 16px;
+    font-size: 13px;
+    color: var(--blue-dark);
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .dim-item::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    background: var(--blue-mid);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  /* EMAIL FORM */
+  .email-section {
+    margin-top: 32px;
+    text-align: left;
+  }
+  .email-section label {
+    display: block;
+    font-weight: 600;
+    color: var(--blue-dark);
+    margin-bottom: 8px;
+    font-size: 14px;
+  }
+  .email-section input {
+    width: 100%;
+    padding: 14px 18px;
+    border: 2px solid var(--blue-light);
+    border-radius: 12px;
+    font-size: 15px;
+    font-family: 'DM Sans', sans-serif;
+    color: var(--text-dark);
+    transition: border-color 0.2s;
+    outline: none;
+  }
+  .email-section input:focus { border-color: var(--blue-mid); }
+  .email-section .note {
+    font-size: 12px;
+    color: var(--text-mid);
+    margin-top: 6px;
+  }
+  .error-msg {
+    color: #c0392b;
+    font-size: 13px;
+    margin-top: 8px;
+    display: none;
+  }
+
+  /* BUTTONS */
+  .btn-primary {
+    background: linear-gradient(135deg, var(--blue-mid), var(--blue-dark));
+    color: var(--white);
+    border: none;
+    padding: 16px 40px;
+    border-radius: 50px;
+    font-size: 16px;
+    font-weight: 600;
+    font-family: 'DM Sans', sans-serif;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 20px rgba(48,100,173,0.35);
+    display: inline-block;
+    margin-top: 24px;
+    width: 100%;
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(48,100,173,0.45); }
+  .btn-primary:active { transform: translateY(0); }
+  .btn-secondary {
+    background: transparent;
+    color: var(--blue-mid);
+    border: 2px solid var(--blue-mid);
+    padding: 12px 32px;
+    border-radius: 50px;
+    font-size: 15px;
+    font-weight: 600;
+    font-family: 'DM Sans', sans-serif;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-top: 16px;
+    width: 100%;
+  }
+  .btn-secondary:hover { background: var(--blue-pale); }
+
+  /* PROGRESS */
+  .progress-bar-wrap {
+    background: var(--blue-light);
+    border-radius: 10px;
+    height: 6px;
+    margin-bottom: 32px;
+    overflow: hidden;
+  }
+  .progress-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--blue-mid), var(--blue-dark));
+    border-radius: 10px;
+    transition: width 0.4s ease;
+  }
+  .progress-label {
+    font-size: 12px;
+    color: var(--text-mid);
+    text-align: right;
+    margin-bottom: 8px;
+    font-weight: 500;
+  }
+
+  /* SECTION CARD */
+  .section-header {
+    background: linear-gradient(135deg, var(--blue-dark), var(--blue-mid));
+    border-radius: 16px 16px 0 0;
+    padding: 24px 32px;
+    color: white;
+  }
+  .section-header .section-num {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--blue-light);
+    margin-bottom: 6px;
+    font-weight: 600;
+  }
+  .section-header h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    margin-bottom: 6px;
+  }
+  .section-header p {
+    font-size: 13px;
+    opacity: 0.85;
+    line-height: 1.5;
+  }
+  .questions-card {
+    background: var(--white);
+    border-radius: 0 0 16px 16px;
+    padding: 32px;
+    box-shadow: 0 4px 30px rgba(42,73,132,0.1);
+    margin-bottom: 24px;
+  }
+
+  /* QUESTION */
+  .question-item {
+    padding: 20px 0;
+    border-bottom: 1px solid var(--blue-pale);
+  }
+  .question-item:last-child { border-bottom: none; padding-bottom: 0; }
+  .question-text {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--text-dark);
+    margin-bottom: 14px;
+    font-weight: 500;
+  }
+  .question-num {
+    display: inline-block;
+    background: var(--blue-pale);
+    color: var(--blue-mid);
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 6px;
+    margin-bottom: 8px;
+  }
+  .options-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+  }
+  .option-btn {
+    border: 2px solid var(--blue-light);
+    background: var(--white);
+    border-radius: 10px;
+    padding: 10px 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: center;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .option-btn .opt-num {
+    display: block;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--blue-mid);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .option-btn .opt-label {
+    font-size: 10px;
+    color: var(--text-mid);
+    line-height: 1.2;
+    font-weight: 500;
+  }
+  .option-btn:hover { border-color: var(--blue-mid); background: var(--blue-pale); }
+  .option-btn.selected {
+    border-color: var(--blue-dark);
+    background: var(--blue-dark);
+  }
+  .option-btn.selected .opt-num,
+  .option-btn.selected .opt-label { color: white; }
+
+  .nav-buttons { display: flex; gap: 12px; margin-top: 8px; }
+  .nav-buttons .btn-primary { margin-top: 0; }
+  .nav-buttons .btn-secondary { margin-top: 0; }
+  .unanswered-msg {
+    color: #c0392b;
+    font-size: 13px;
+    margin-top: 8px;
+    display: none;
+  }
+
+  /* RESULTS */
+  .result-header {
+    background: linear-gradient(135deg, var(--blue-dark) 0%, var(--blue-mid) 100%);
+    border-radius: 20px;
+    padding: 40px 36px;
+    color: white;
+    text-align: center;
+    margin-bottom: 24px;
+    position: relative;
+    overflow: hidden;
+  }
+  .result-header::before {
+    content: '';
+    position: absolute;
+    top: -30%;
+    right: -10%;
+    width: 40%;
+    height: 160%;
+    background: rgba(255,255,255,0.05);
+    border-radius: 50%;
+  }
+  .result-header .result-tag {
+    display: inline-block;
+    background: rgba(255,255,255,0.15);
+    color: var(--blue-light);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    border-radius: 20px;
+    margin-bottom: 16px;
+  }
+  .result-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(24px, 4vw, 36px);
+    margin-bottom: 8px;
+  }
+  .result-header .profile-name {
+    font-size: 20px;
+    font-weight: 300;
+    opacity: 0.9;
+    margin-bottom: 20px;
+  }
+  .total-score {
+    display: inline-block;
+    background: rgba(255,255,255,0.15);
+    border-radius: 12px;
+    padding: 12px 24px;
+    font-size: 14px;
+  }
+  .total-score strong { font-size: 28px; display: block; }
+
+  /* DIMENSION SCORES */
+  .scores-card {
+    background: var(--white);
+    border-radius: 16px;
+    padding: 32px;
+    box-shadow: 0 4px 20px rgba(42,73,132,0.08);
+    margin-bottom: 24px;
+  }
+  .scores-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    color: var(--blue-dark);
+    margin-bottom: 24px;
+  }
+  .dim-score-item {
+    margin-bottom: 20px;
+  }
+  .dim-score-item:last-child { margin-bottom: 0; }
+  .dim-score-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+  .dim-score-name {
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--text-dark);
+  }
+  .dim-score-val {
+    font-size: 13px;
+    color: var(--blue-mid);
+    font-weight: 600;
+  }
+  .dim-bar {
+    background: var(--blue-pale);
+    border-radius: 6px;
+    height: 8px;
+    overflow: hidden;
+  }
+  .dim-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--blue-mid), var(--blue-dark));
+    border-radius: 6px;
+    transition: width 1s ease;
+  }
+
+  /* PROFILE CONTENT */
+  .profile-card {
+    background: var(--white);
+    border-radius: 16px;
+    padding: 32px;
+    box-shadow: 0 4px 20px rgba(42,73,132,0.08);
+    margin-bottom: 24px;
+  }
+  .profile-card .intro-quote {
+    background: var(--blue-pale);
+    border-left: 4px solid var(--blue-mid);
+    padding: 16px 20px;
+    border-radius: 0 12px 12px 0;
+    font-style: italic;
+    color: var(--blue-dark);
+    font-size: 14px;
+    margin-bottom: 28px;
+    line-height: 1.6;
+  }
+  .profile-section {
+    margin-bottom: 28px;
+  }
+  .profile-section h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    color: var(--blue-dark);
+    margin-bottom: 14px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--blue-pale);
+  }
+  .profile-list {
+    list-style: none;
+    padding: 0;
+  }
+  .profile-list li {
+    padding: 8px 0 8px 20px;
+    position: relative;
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--text-mid);
+    border-bottom: 1px solid var(--blue-pale);
+  }
+  .profile-list li:last-child { border-bottom: none; }
+  .profile-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 17px;
+    width: 8px;
+    height: 8px;
+    background: var(--blue-mid);
+    border-radius: 50%;
+  }
+  .evolution-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .evolution-block {
+    background: var(--blue-pale);
+    border-radius: 12px;
+    padding: 18px 20px;
+  }
+  .evolution-block h5 {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--blue-mid);
+    margin-bottom: 10px;
+  }
+  .evolution-block ul {
+    list-style: none;
+    padding: 0;
+  }
+  .evolution-block ul li {
+    font-size: 13px;
+    color: var(--text-dark);
+    padding: 5px 0 5px 16px;
+    position: relative;
+    line-height: 1.5;
+  }
+  .evolution-block ul li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--blue-mid);
+    font-size: 11px;
+    top: 6px;
+  }
+  .profile-closing {
+    background: linear-gradient(135deg, var(--blue-pale), var(--blue-light));
+    border-radius: 12px;
+    padding: 20px 24px;
+    font-size: 14px;
+    color: var(--blue-dark);
+    line-height: 1.7;
+    font-style: italic;
+    margin-top: 8px;
+  }
+
+  /* CTA */
+  .cta-card {
+    background: linear-gradient(135deg, var(--blue-dark), var(--blue-mid));
+    border-radius: 20px;
+    padding: 40px 36px;
+    text-align: center;
+    color: white;
+    margin-bottom: 24px;
+  }
+  .cta-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    margin-bottom: 12px;
+  }
+  .cta-card p {
+    opacity: 0.9;
+    font-size: 15px;
+    line-height: 1.6;
+    margin-bottom: 28px;
+    max-width: 460px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .cta-btn {
+    display: inline-block;
+    background: white;
+    color: var(--blue-dark);
+    font-weight: 700;
+    font-size: 15px;
+    padding: 16px 36px;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: all 0.2s;
+    font-family: 'DM Sans', sans-serif;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  }
+  .cta-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(0,0,0,0.2); }
+
+  /* LOADING */
+  .loading-screen {
+    text-align: center;
+    padding: 60px 20px;
+  }
+  .spinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid var(--blue-light);
+    border-top-color: var(--blue-mid);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    margin: 0 auto 20px;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .loading-screen p { color: var(--text-mid); font-size: 15px; }
+
+  /* ALREADY DONE */
+  .already-done {
+    background: var(--white);
+    border-radius: 20px;
+    padding: 48px 40px;
+    text-align: center;
+    box-shadow: 0 4px 30px rgba(42,73,132,0.1);
+  }
+  .already-done .icon { font-size: 48px; margin-bottom: 20px; }
+  .already-done h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    color: var(--blue-dark);
+    margin-bottom: 12px;
+  }
+  .already-done p { color: var(--text-mid); line-height: 1.7; font-size: 15px; }
+
+  @media (max-width: 600px) {
+    .dimensions-grid { grid-template-columns: 1fr; }
+    .options-grid { grid-template-columns: repeat(2, 1fr); }
+    .welcome-card, .questions-card, .scores-card, .profile-card { padding: 24px 20px; }
+    .result-header { padding: 32px 24px; }
+    .cta-card { padding: 32px 24px; }
+    .nav-buttons { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-tag">Autodiagnóstico</div>
+  <h1>Diagnóstico de Liderazgo <span>Consciente</span></h1>
+  <p>Un espacio diseñado para tu evolución. Frenar, mirar hacia adentro y potenciar tu impacto.</p>
+</div>
+
+<div class="container">
+
+  <!-- SCREEN: WELCOME -->
+  <div class="screen active" id="screen-welcome">
+    <div class="welcome-card">
+      <h2>Liderazgo en la práctica real</h2>
+      <p>Dejamos de lado los estilos ideales para enfocarnos en tu ejecución diaria. Este espacio analiza tu capacidad de respuesta ante la exigencia y la incertidumbre.</p>
+      <div class="highlight">
+        "Respondé desde lo que hacés hoy, no desde lo que te gustaría hacer. La honestidad es tu mejor herramienta aquí."
+      </div>
+      <p>Exploraremos cinco dimensiones clave de tu liderazgo:</p>
+      <div class="dimensions-grid">
+        <div class="dim-item">Toma de decisiones</div>
+        <div class="dim-item">Gestión emocional</div>
+        <div class="dim-item">Comunicación y feedback</div>
+        <div class="dim-item">Visión y estrategia</div>
+        <div class="dim-item" style="grid-column: span 2; justify-content: center;">Desarrollo de talento</div>
+      </div>
+      <div class="email-section">
+        <label for="email-input">Tu correo electrónico</label>
+        <input type="email" id="email-input" placeholder="nombre@ejemplo.com" />
+        <div class="note">Solo podés realizar este diagnóstico una vez por correo.</div>
+        <div class="error-msg" id="email-error">Por favor ingresá un correo válido.</div>
+        <div class="error-msg" id="email-used">Este correo ya realizó el diagnóstico.</div>
+      </div>
+      <button class="btn-primary" onclick="startDiagnostic()">Comenzar diagnóstico →</button>
+    </div>
+  </div>
+
+  <!-- SCREEN: ALREADY DONE -->
+  <div class="screen" id="screen-done">
+    <div class="already-done">
+      <div class="icon">✓</div>
+      <h2>Ya realizaste este diagnóstico</h2>
+      <p>Registramos que este correo ya completó el Diagnóstico de Liderazgo Consciente.<br><br>Si tenés preguntas o querés conocer más sobre los programas de desarrollo, podés contactarnos directamente.</p>
+    </div>
+  </div>
+
+  <!-- SCREEN: SECTION INTRO -->
+  <div class="screen" id="screen-section-intro">
+    <div id="section-intro-content"></div>
+    <button class="btn-primary" onclick="showQuestions()" id="btn-start-section">Comenzar esta sección →</button>
+  </div>
+
+  <!-- SCREEN: QUESTIONS -->
+  <div class="screen" id="screen-questions">
+    <div class="progress-label" id="progress-label"></div>
+    <div class="progress-bar-wrap">
+      <div class="progress-bar-fill" id="progress-bar"></div>
+    </div>
+    <div id="questions-content"></div>
+    <div class="unanswered-msg" id="unanswered-msg">Por favor respondé todas las preguntas antes de continuar.</div>
+    <div class="nav-buttons">
+      <button class="btn-secondary" onclick="prevSection()" id="btn-prev" style="display:none">← Anterior</button>
+      <button class="btn-primary" onclick="nextSection()" id="btn-next">Siguiente →</button>
+    </div>
+  </div>
+
+  <!-- SCREEN: LOADING -->
+  <div class="screen" id="screen-loading">
+    <div class="loading-screen">
+      <div class="spinner"></div>
+      <p>Analizando tu diagnóstico…</p>
+    </div>
+  </div>
+
+  <!-- SCREEN: RESULTS -->
+  <div class="screen" id="screen-results">
+    <div id="results-content"></div>
+  </div>
+
+</div>
+
+<script>
+const STORAGE_KEY = 'dlc_responses';
+
+const sections = [
+  {
+    name: "Toma de decisiones",
+    desc: "Evaluamos tu capacidad para analizar situaciones complejas, considerar alternativas y asumir riesgos calculados en contextos de presión e incertidumbre.",
+    questions: [
+      "Ante la incertidumbre, priorizo el impacto estratégico a largo plazo aun cuando eso tensiona los resultados inmediatos o la comodidad del equipo.",
+      "Decido y avanzo con rapidez aun cuando cuento con información incompleta y el riesgo de error es alto.",
+      "Antes de ejecutar una decisión difícil, busco activamente datos o miradas que desafíen mi postura inicial.",
+      "Sostengo decisiones necesarias para el negocio aun cuando generan malestar directo en el equipo y me exponen personalmente.",
+      "Bajo presión extrema, evalúo el peor escenario posible y defino acciones para mitigar riesgos antes de avanzar."
+    ]
+  },
+  {
+    name: "Gestión emocional",
+    desc: "Observamos cómo identificás, regulás y comunicás tus emociones ante desafíos, manejando el estrés e impulsando el clima del equipo.",
+    questions: [
+      "Ante un ataque personal o un conflicto inesperado, logro regular mi reacción sin que mi lenguaje corporal o mis palabras se vuelvan defensivos.",
+      "Cuando la carga de trabajo me supera, logro regular mi tensión sin descargarla en las personas más cercanas.",
+      "Soy consciente de que mi estado emocional impacta en el clima del equipo y actúo para no amplificar la tensión o el desánimo.",
+      "Reconozco señales de estrés en mi forma de liderar (irritabilidad, falta de escucha, control excesivo) antes de que afecten al equipo.",
+      "Al comunicar malas noticias, sostengo la gravedad del problema sin perder foco ni transmitir pánico o evasión."
+    ]
+  },
+  {
+    name: "Comunicación y feedback",
+    desc: "Analizamos cómo informás, escuchás y brindás devoluciones claras y constructivas para lograr entendimiento y aprendizaje.",
+    questions: [
+      "Cuando implemento cambios relevantes, escucho y abordo las resistencias del equipo en lugar de limitarme a comunicar los beneficios.",
+      "Doy feedback crítico de forma directa y específica, aun cuando genera incomodidad o tensión en la relación.",
+      "Cuando recibo críticas sobre mi gestión, escucho sin justificarme ni recurrir a mi posición de autoridad.",
+      "Integro aportes del equipo en las decisiones finales, incluso cuando contradicen mi enfoque inicial o complejizan la ejecución.",
+      "En situaciones urgentes, comunico decisiones difíciles de forma directa y personal, aunque resulte incómodo."
+    ]
+  },
+  {
+    name: "Visión y estrategia",
+    desc: "Relevamos tu habilidad para definir objetivos claros, anticipar escenarios y alinear las acciones del equipo con propósitos a mediano y largo plazo.",
+    questions: [
+      "Traduzco la visión de la organización en prioridades claras que permiten al equipo entender cómo su trabajo diario impacta en el negocio.",
+      "Dedico tiempo a anticipar riesgos y escenarios futuros antes de que se conviertan en problemas urgentes.",
+      "En contextos de incertidumbre externa, sostengo mensajes claros que ayudan al equipo a mantener foco y dirección.",
+      "Reservo tiempo para el pensamiento estratégico aun cuando lo operativo y urgente compite constantemente por mi atención.",
+      "Reasigno recursos o presupuesto cuando un proyecto deja de ser prioritario, aun cuando eso genera tensiones internas."
+    ]
+  },
+  {
+    name: "Desarrollo de talento",
+    desc: "Indagamos en tu impulso para potenciar las capacidades de otros, crear oportunidades de crecimiento y formar equipos resilientes y autónomos.",
+    questions: [
+      "Adapto los desafíos y oportunidades de desarrollo según las capacidades y aspiraciones de cada persona del equipo.",
+      "Delego responsabilidades críticas aunque eso implique aceptar errores que antes resolvía personalmente.",
+      "Mantengo conversaciones periódicas enfocadas en el desarrollo y crecimiento profesional, más allá de las tareas operativas.",
+      "Permito que el equipo tome decisiones relevantes sin mi intervención directa, aun cuando el enfoque no coincide con el mío.",
+      "Ante bajo desempeño, trabajo en el desarrollo de la persona antes de asumir yo la tarea o quitarle responsabilidades."
+    ]
+  }
+];
+
+const options = [
+  { num: 1, label: "Nunca o casi nunca" },
+  { num: 2, label: "A veces" },
+  { num: 3, label: "Frecuentemente" },
+  { num: 4, label: "Siempre o casi siempre" }
+];
+
+const profiles = [
+  {
+    range: [25, 45],
+    headline: "Liderás en modo de respuesta inmediata.",
+    name: "Ejecutor Reactivo",
+    strengths: [
+      "Respondés con rapidez frente a problemas y situaciones imprevistas.",
+      "Mostrás alta disposición para hacerte cargo y sostener la operación diaria.",
+      "Actuás aun con información incompleta, evitando la parálisis ante la incertidumbre.",
+      "Transmitís sensación de acción y resolución en contextos de presión."
+    ],
+    blindspots: [
+      "Tendés a priorizar la urgencia por sobre la reflexión, lo que puede limitar la calidad de algunas decisiones.",
+      "Podés reaccionar más desde la presión del contexto que desde un criterio previamente definido.",
+      "Es frecuente que el impacto de tus decisiones se evalúe después de ejecutarlas, y no antes.",
+      "La velocidad constante puede dificultar la escucha profunda y la anticipación de riesgos."
+    ],
+    climate: [
+      "El equipo percibe capacidad de respuesta y resolución, especialmente en momentos críticos.",
+      "Puede aparecer cansancio, sensación de urgencia permanente o falta de espacio para aportar miradas alternativas.",
+      "La dinámica de trabajo suele volverse demandante, con foco en apagar incendios más que en construir previsibilidad."
+    ],
+    description: "Este perfil refleja un liderazgo fuertemente orientado a la acción y al sostén del día a día. Su principal desafío no está en hacer más, sino en empezar a introducir criterio donde hoy domina la reacción. Cuando la respuesta inmediata se vuelve el modo habitual de liderar, el costo suele aparecer en el mediano plazo: desgaste, errores evitables y menor claridad estratégica.",
+    keep: [
+      "Continuá respondiendo con rapidez frente a situaciones críticas y sosteniendo la operación cuando el contexto lo exige.",
+      "Mantené tu disposición a hacerte cargo y a dar respuestas claras en momentos de presión.",
+      "Seguí siendo una figura de referencia cuando aparecen problemas que requieren resolución inmediata."
+    ],
+    adjust: [
+      "Empezá a diferenciar qué situaciones requieren una respuesta urgente y cuáles permiten una breve pausa de análisis.",
+      "Incorporá instancias de revisión posterior a las decisiones tomadas, no solo para corregir, sino para aprender.",
+      "Ajustá el nivel de involucramiento directo: no todo problema necesita ser resuelto por vos para que funcione."
+    ],
+    start: [
+      "Definí criterios simples para la toma de decisiones que te permitan actuar con rapidez sin depender solo de la intuición.",
+      "Construí acuerdos claros con el equipo sobre expectativas, niveles de autonomía y manejo de errores.",
+      "Establecé espacios breves y regulares de retroalimentación para anticipar desvíos antes de que se vuelvan urgentes.",
+      "Empezá a entrenar la pausa consciente como parte del liderazgo, no como excepción."
+    ],
+    closing: "Esta hoja de ruta apunta a transformar la respuesta constante en liderazgo con mayor criterio y menor desgaste. El objetivo no es hacer menos, sino liderar mejor desde la acción, incorporando claridad y previsibilidad al día a día."
+  },
+  {
+    range: [46, 65],
+    headline: "Liderás con mayor conciencia, pero sin estabilidad plena.",
+    name: "Gestor en Transición",
+    strengths: [
+      "Empezás a cuestionar tus formas habituales de decidir y liderar, incorporando mayor reflexión antes de actuar.",
+      "Mostrás apertura para escuchar otras miradas y considerar el impacto de tus decisiones en las personas y en el contexto.",
+      "Alternás entre la acción y la pausa, buscando equilibrar resultados con mayor conciencia del proceso.",
+      "Reconocés que no todas las situaciones se resuelven con velocidad y que el liderazgo requiere lectura contextual."
+    ],
+    blindspots: [
+      "Podés oscilar entre reaccionar rápido y frenar en exceso, generando cierta inconsistencia en la toma de decisiones.",
+      "En momentos de presión, tendés a volver a modos conocidos aun cuando sabés que podrían no ser los más adecuados.",
+      "La revisión constante puede derivar en postergar definiciones importantes o comunicar mensajes ambiguos al equipo.",
+      "Aún no siempre confiás en tu propio criterio cuando este entra en tensión con las demandas del entorno."
+    ],
+    climate: [
+      "El equipo percibe mayor apertura, escucha y disposición al diálogo.",
+      "Se genera un clima más reflexivo, aunque a veces con sensación de indefinición o falta de dirección clara.",
+      "Pueden convivir expectativas distintas dentro del equipo según el momento y el estilo que adoptes en cada situación."
+    ],
+    description: "Este perfil refleja un liderazgo en transición. Ya no operás exclusivamente desde la reacción, pero todavía no consolidaste un criterio estable que sostenga tus decisiones de forma consistente. El desafío principal no está en sumar más herramientas, sino en ordenar y afirmar el criterio que estás empezando a construir.",
+    keep: [
+      "Continuá cuestionando tus decisiones y abriendo espacio a otras miradas antes de actuar.",
+      "Mantené la escucha activa y la intención de considerar el impacto de tus acciones en las personas y en los resultados.",
+      "Sostené la búsqueda de equilibrio entre acción y reflexión como parte de tu forma de liderar."
+    ],
+    adjust: [
+      "Reducí la oscilación entre frenar en exceso y reaccionar desde la urgencia; esa variabilidad genera incertidumbre.",
+      "Ajustá la comunicación de tus decisiones para evitar mensajes ambiguos o poco concluyentes.",
+      "Empezá a cerrar definiciones con mayor claridad, aun cuando no tengas toda la información disponible."
+    ],
+    start: [
+      "Consolidá criterios explícitos para decidir que te permitan sostener coherencia incluso bajo presión.",
+      "Definí prioridades claras y compartilas con el equipo para alinear expectativas y foco.",
+      "Incorporá instancias de revisión consciente de decisiones clave para fortalecer aprendizaje y consistencia.",
+      "Entrená la confianza en tu propio criterio, especialmente cuando entra en tensión con las demandas del entorno."
+    ],
+    closing: "El desarrollo en este perfil pasa por ordenar lo que ya empezaste a construir. Cuando la revisión se transforma en claridad y la claridad en acción coherente, el liderazgo gana dirección, previsibilidad y mayor impacto en el tiempo."
+  },
+  {
+    range: [66, 85],
+    headline: "Liderás de manera estratégica y consciente.",
+    name: "Impulsor Estratégico",
+    strengths: [
+      "Tomás decisiones desde un criterio deliberado, integrando variables de negocio, personas y contexto antes de actuar.",
+      "Mostrás capacidad para pausar, observar y elegir conscientemente el curso de acción más adecuado según el impacto esperado.",
+      "Sostenés coherencia entre lo que pensás, comunicás y ejecutás, incluso en escenarios complejos o de presión.",
+      "Priorizás la construcción de sentido y dirección, evitando respuestas impulsivas o meramente reactivas."
+    ],
+    blindspots: [
+      "Podés confiar en exceso en tu propio criterio y postergar contrastes externos que desafíen tu mirada.",
+      "Existe riesgo de acomodarte en un estilo que 'funciona', reduciendo la revisión crítica de decisiones pasadas.",
+      "En contextos que requieren velocidad extrema, tu necesidad de análisis puede demorar definiciones clave.",
+      "Podés subestimar la necesidad de intervenciones más directas cuando el equipo espera mayor claridad o firmeza."
+    ],
+    climate: [
+      "El equipo percibe claridad, coherencia y una sensación de liderazgo estable y confiable.",
+      "Se promueve un entorno de reflexión, aprendizaje y responsabilidad compartida.",
+      "En momentos de alta urgencia, puede generarse expectativa de mayor rapidez o explicitación de decisiones."
+    ],
+    description: "Este perfil refleja un liderazgo sólido y consciente, con alto potencial de impacto sostenido. El principal desafío no está en corregir el estilo, sino en seguir desarrollándolo, evitando que la claridad se transforme en zona de confort y manteniendo activa la revisión de decisiones, conversaciones y resultados.",
+    keep: [
+      "Mantené la toma de decisiones deliberada, integrando contexto, personas y objetivos antes de actuar.",
+      "Sostené la coherencia entre lo que pensás, comunicás y hacés como eje de tu liderazgo.",
+      "Continuá generando espacios de reflexión y sentido que permitan al equipo comprender el para qué de las decisiones."
+    ],
+    adjust: [
+      "Evitá asumir que el criterio ya está consolidado; incluso los estilos que funcionan necesitan revisión periódica.",
+      "Ajustá el nivel de intervención directa cuando el equipo requiere mayor claridad o firmeza frente a decisiones críticas.",
+      "Revisá si tu foco en el equilibrio y la reflexión puede estar postergando definiciones necesarias en contextos de alta urgencia."
+    ],
+    start: [
+      "Profundizá la revisión estratégica de tus decisiones clave, no solo desde el resultado, sino desde el impacto generado.",
+      "Incorporá conversaciones más desafiantes cuando el contexto lo requiere, aun si tensionan la armonía momentánea.",
+      "Fortalecé la explicitación de criterios para que el equipo entienda no solo qué se decide, sino desde dónde se decide.",
+      "Trabajá la actualización continua de tu liderazgo, entendiendo que la conciencia no es un estado alcanzado, sino una práctica."
+    ],
+    closing: "Evolucionar en este nivel implica seguir desarrollando. No para corregir lo que está mal, sino para evitar que lo que hoy funciona se transforme en límite mañana."
+  },
+  {
+    range: [86, 100],
+    headline: "Liderás con consciencia plena e impacto transformador.",
+    name: "Líder Transformacional",
+    strengths: [
+      "Integrás con naturalidad la visión estratégica y la gestión de personas, tomando decisiones que consideran el corto y largo plazo simultáneamente.",
+      "Mostrás una coherencia sostenida entre lo que pensás, comunicás y ejecutás, incluso en los escenarios de mayor presión.",
+      "Generás entornos donde otros líderes crecen, se desarrollan y toman decisiones con mayor autonomía y criterio propio.",
+      "Sostenés conversaciones difíciles con claridad y cuidado, sin evitar la incomodidad necesaria para el crecimiento del equipo.",
+      "Tu presencia genera estabilidad, confianza y dirección, especialmente cuando el contexto externo es volátil o desafiante."
+    ],
+    blindspots: [
+      "El alto nivel de coherencia y criterio puede generar expectativas muy elevadas en el equipo, que a veces necesita permiso explícito para equivocarse.",
+      "Existe riesgo de que tu claridad estratégica se transforme en una voz tan dominante que inhiba la emergencia de nuevas ideas.",
+      "Puede aparecer la tendencia a sostener más control del necesario sobre decisiones que ya podrían ser completamente delegadas.",
+      "El liderazgo en este nivel puede volverse solitario si no se construyen activamente espacios de intercambio con pares de igual nivel."
+    ],
+    climate: [
+      "El equipo experimenta un entorno de alto rendimiento con propósito claro, donde la exigencia y el cuidado coexisten.",
+      "Se promueve una cultura de responsabilidad, aprendizaje continuo y autonomía creciente.",
+      "Las personas a tu alrededor tienden a crecer más rápido, asumir más responsabilidad y desarrollar su propio criterio.",
+      "El riesgo en este nivel no es el clima, sino la dependencia: que el equipo funcione bien solo cuando vos estás presente."
+    ],
+    description: "Este perfil refleja un liderazgo que ya no se mide solo por resultados propios, sino por la capacidad de multiplicar impacto en otros. Llegaste a un nivel donde el crecimiento personal ya no es suficiente — el verdadero desafío es transformarte en quien potencia el liderazgo de quienes te rodean. Eso requiere soltar, confiar y construir sistemas que funcionen más allá de tu presencia directa.",
+    keep: [
+      "Sostené la coherencia entre pensamiento, comunicación y acción como eje central de tu forma de liderar.",
+      "Continuá generando entornos donde la exigencia y el cuidado de las personas son complementarios.",
+      "Mantené la práctica de las conversaciones difíciles: es una de tus fortalezas más valiosas y más escasas.",
+      "Preservá el espacio para el pensamiento estratégico aunque lo operativo compita constantemente por tu atención."
+    ],
+    adjust: [
+      "Revisá dónde todavía sostenés control sobre decisiones que ya podrían ser completamente del equipo.",
+      "Ajustá la forma en que comunicás tu criterio para que inspire y oriente, sin inhibir la emergencia de miradas diferentes.",
+      "Generá explícitamente permiso para el error dentro del equipo: no todos tienen tu nivel de tolerancia a la incertidumbre.",
+      "Buscá activamente espacios de intercambio con otros líderes de tu nivel para evitar el aislamiento que suele acompañar este perfil."
+    ],
+    start: [
+      "Definí de forma consciente cuál es tu legado de liderazgo: qué capacidades, culturas y líderes querés haber desarrollado.",
+      "Construí sistemas, procesos y acuerdos que sostengan el funcionamiento del equipo más allá de tu presencia directa.",
+      "Considerá cómo tu experiencia y criterio pueden impactar en otros líderes fuera de tu equipo inmediato.",
+      "Profundizá en las dimensiones con menor puntaje de este diagnóstico: en este nivel, los matices marcan la diferencia."
+    ],
+    closing: "Liderar en este nivel es una responsabilidad que va más allá del rol. El desafío ya no es crecer vos, sino crear las condiciones para que otros crezcan. Ahí es donde el liderazgo se vuelve verdaderamente transformador."
+  }
+];
+
+// State
+let currentSection = 0;
+let answers = {};
+let userEmail = '';
+
+function getStoredEmails() {
+  try {
+    return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+  } catch(e) { return []; }
+}
+
+function storeEmail(email) {
+  const emails = getStoredEmails();
+  emails.push(email.toLowerCase());
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(emails));
+}
+
+function emailAlreadyUsed(email) {
+  return getStoredEmails().includes(email.toLowerCase());
+}
+
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function startDiagnostic() {
+  const emailInput = document.getElementById('email-input');
+  const email = emailInput.value.trim();
+  document.getElementById('email-error').style.display = 'none';
+  document.getElementById('email-used').style.display = 'none';
+
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    document.getElementById('email-error').style.display = 'block';
+    return;
+  }
+
+  if (emailAlreadyUsed(email)) {
+    document.getElementById('email-used').style.display = 'block';
+    return;
+  }
+
+  userEmail = email;
+  currentSection = 0;
+  answers = {};
+  showSectionIntro();
+}
+
+function showSectionIntro() {
+  const s = sections[currentSection];
+  const totalQ = sections.reduce((a, sec) => a + sec.questions.length, 0);
+  const doneQ = sections.slice(0, currentSection).reduce((a, sec) => a + sec.questions.length, 0);
+
+  document.getElementById('section-intro-content').innerHTML = `
+    <div class="section-header" style="border-radius:16px; margin-bottom:0">
+      <div class="section-num">Dimensión ${currentSection + 1} de ${sections.length}</div>
+      <h3>${s.name}</h3>
+      <p>${s.desc}</p>
+    </div>
+  `;
+  showScreen('screen-section-intro');
+}
+
+function showQuestions() {
+  renderQuestions();
+  showScreen('screen-questions');
+}
+
+function renderQuestions() {
+  const s = sections[currentSection];
+  const totalQ = sections.reduce((a, sec) => a + sec.questions.length, 0);
+  const doneQ = sections.slice(0, currentSection).reduce((a, sec) => a + sec.questions.length, 0);
+  const pct = Math.round((doneQ / totalQ) * 100);
+
+  document.getElementById('progress-label').textContent = `Pregunta ${doneQ + 1}–${doneQ + s.questions.length} de ${totalQ}`;
+  document.getElementById('progress-bar').style.width = pct + '%';
+
+  let html = `<div class="section-header"><div class="section-num">Dimensión ${currentSection + 1} de ${sections.length}</div><h3>${s.name}</h3></div>`;
+  html += '<div class="questions-card">';
+
+  s.questions.forEach((q, qi) => {
+    const qKey = `${currentSection}-${qi}`;
+    html += `<div class="question-item">
+      <div class="question-num">Pregunta ${doneQ + qi + 1}</div>
+      <div class="question-text">${q}</div>
+      <div class="options-grid">`;
+    options.forEach(opt => {
+      const selected = answers[qKey] === opt.num ? 'selected' : '';
+      html += `<button class="option-btn ${selected}" onclick="selectAnswer('${qKey}', ${opt.num}, this)">
+        <span class="opt-num">${opt.num}</span>
+        <span class="opt-label">${opt.label}</span>
+      </button>`;
+    });
+    html += `</div></div>`;
+  });
+
+  html += '</div>';
+  document.getElementById('questions-content').innerHTML = html;
+
+  document.getElementById('btn-prev').style.display = currentSection > 0 ? 'block' : 'none';
+  document.getElementById('btn-next').textContent = currentSection < sections.length - 1 ? 'Siguiente →' : 'Ver mi resultado →';
+}
+
+function selectAnswer(key, val, btn) {
+  answers[key] = val;
+  const grid = btn.parentElement;
+  grid.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  document.getElementById('unanswered-msg').style.display = 'none';
+}
+
+function allAnswered() {
+  const s = sections[currentSection];
+  for (let qi = 0; qi < s.questions.length; qi++) {
+    if (answers[`${currentSection}-${qi}`] === undefined) return false;
+  }
+  return true;
+}
+
+function nextSection() {
+  if (!allAnswered()) {
+    document.getElementById('unanswered-msg').style.display = 'block';
+    return;
+  }
+  document.getElementById('unanswered-msg').style.display = 'none';
+
+  if (currentSection < sections.length - 1) {
+    currentSection++;
+    showSectionIntro();
+  } else {
+    showResults();
+  }
+}
+
+function prevSection() {
+  if (currentSection > 0) {
+    currentSection--;
+    showSectionIntro();
+  }
+}
+
+function calcScores() {
+  const dimScores = sections.map((s, si) => {
+    let total = 0;
+    s.questions.forEach((_, qi) => { total += answers[`${si}-${qi}`] || 0; });
+    return { name: s.name, score: total, max: s.questions.length * 4 };
+  });
+  const total = dimScores.reduce((a, d) => a + d.score, 0);
+  return { dimScores, total, max: sections.reduce((a, s) => a + s.questions.length, 0) * 4 };
+}
+
+function getProfile(total) {
+  return profiles.find(p => total >= p.range[0] && total <= p.range[1]) || profiles[profiles.length - 1];
+}
+
+function showResults() {
+  showScreen('screen-loading');
+  storeEmail(userEmail);
+
+  setTimeout(() => {
+    const { dimScores, total, max } = calcScores();
+    const profile = getProfile(total);
+
+    let html = `
+      <div class="result-header">
+        <div class="result-tag">Tu resultado</div>
+        <h2>${profile.headline}</h2>
+        <div class="profile-name">Perfil: ${profile.name}</div>
+        <div class="total-score">Puntaje total<strong>${total} / ${max}</strong></div>
+      </div>
+
+      <div class="scores-card">
+        <h3>Resultados por dimensión</h3>
+        ${dimScores.map(d => `
+          <div class="dim-score-item">
+            <div class="dim-score-header">
+              <span class="dim-score-name">${d.name}</span>
+              <span class="dim-score-val">${d.score} / ${d.max}</span>
+            </div>
+            <div class="dim-bar"><div class="dim-bar-fill" style="width:${Math.round((d.score/d.max)*100)}%"></div></div>
+          </div>
+        `).join('')}
+      </div>
+
+      <div class="profile-card">
+        <div class="intro-quote">
+          "Este diagnóstico no define quién sos como líder, sino cómo estás liderando hoy. El valor está en lo que elijas revisar y ajustar a partir de ahora."
+        </div>
+
+        <div class="profile-section">
+          <h4>Fortalezas principales</h4>
+          <ul class="profile-list">
+            ${profile.strengths.map(s => `<li>${s}</li>`).join('')}
+          </ul>
+        </div>
+
+        <div class="profile-section">
+          <h4>Áreas de desarrollo</h4>
+          <ul class="profile-list">
+            ${profile.blindspots.map(s => `<li>${s}</li>`).join('')}
+          </ul>
+        </div>
+
+        <div class="profile-section">
+          <h4>Impacto en el clima laboral</h4>
+          <ul class="profile-list">
+            ${profile.climate.map(s => `<li>${s}</li>`).join('')}
+          </ul>
+        </div>
+
+        <div class="profile-section">
+          <h4>Tu perfil</h4>
+          <p style="font-size:14px;line-height:1.7;color:var(--text-mid)">${profile.description}</p>
+        </div>
+
+        <div class="profile-section">
+          <h4>Claves para evolucionar tu liderazgo</h4>
+          <div class="evolution-grid">
+            <div class="evolution-block">
+              <h5>Qué mantener</h5>
+              <ul>${profile.keep.map(s => `<li>${s}</li>`).join('')}</ul>
+            </div>
+            <div class="evolution-block">
+              <h5>Qué ajustar</h5>
+              <ul>${profile.adjust.map(s => `<li>${s}</li>`).join('')}</ul>
+            </div>
+            <div class="evolution-block">
+              <h5>Qué empezar a hacer</h5>
+              <ul>${profile.start.map(s => `<li>${s}</li>`).join('')}</ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="profile-closing">${profile.closing}</div>
+        <p style="text-align:center;font-weight:700;color:var(--blue-dark);margin-top:20px;font-size:16px;">¡La transformación en tus manos!</p>
+      </div>
+
+      <div class="cta-card">
+        <h3>¿Querés trabajar en tu evolución?</h3>
+        <p>A partir de este diagnóstico podemos diseñar juntos un camino de desarrollo concreto. Workshops, programas de acompañamiento, sesiones individuales y formaciones a medida.</p>
+        <a href="https://virginiacardinaux.com" class="cta-btn">Conocé los programas →</a>
+      </div>
+    `;
+
+    document.getElementById('results-content').innerHTML = html;
+    showScreen('screen-results');
+
+    // Animate bars
+    setTimeout(() => {
+      document.querySelectorAll('.dim-bar-fill').forEach(bar => {
+        const w = bar.style.width;
+        bar.style.width = '0';
+        setTimeout(() => { bar.style.width = w; }, 100);
+      });
+    }, 200);
+
+  }, 2000);
+}
+</script>
+</body>
+</html>
