@@ -3,729 +3,2293 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Diagnóstico de Liderazgo Consciente</title>
+<title>Aleesha Growth · Tu recurso gratuito</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
+
   :root {
-    --blue-dark: #2a4984;
-    --blue-mid: #3064ad;
-    --blue-light: #cbd9ec;
-    --blue-pale: #ebf3ff;
+    --blue-deep: #1e3a6e;
+    --blue-mid: #2d5fa6;
+    --blue-light: #4a7fd4;
+    --blue-pale: #dce8f8;
+    --accent: #4a7fd4;
     --white: #ffffff;
-    --text-dark: #1a2e4a;
-    --text-mid: #4a6080;
+    --off-white: #f7f9fc;
+    --gray-light: #e8eef6;
+    --gray-text: #5a6a80;
+    --text: #1a2840;
+    --green: #2d7a5f;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   body {
     font-family: 'DM Sans', sans-serif;
-    background: var(--blue-pale);
-    color: var(--text-dark);
+    background: var(--off-white);
+    color: var(--text);
     min-height: 100vh;
   }
 
   /* HEADER */
-  .header {
-    background: linear-gradient(135deg, var(--blue-dark) 0%, var(--blue-mid) 100%);
-    padding: 40px 20px;
-    text-align: center;
+  header {
+    background: var(--blue-deep);
+    padding: 0;
     position: relative;
     overflow: hidden;
   }
-  .header::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -20%;
-    width: 60%;
-    height: 200%;
-    background: rgba(255,255,255,0.04);
-    transform: rotate(20deg);
-    border-radius: 50%;
-  }
-  .header-tag {
-    display: inline-block;
-    background: rgba(255,255,255,0.15);
-    color: var(--blue-light);
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    padding: 6px 16px;
-    border-radius: 20px;
-    margin-bottom: 16px;
-  }
-  .header h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(28px, 5vw, 48px);
-    color: var(--white);
-    line-height: 1.2;
-    margin-bottom: 12px;
-  }
-  .header h1 span {
-    color: var(--blue-light);
-  }
-  .header p {
-    color: rgba(255,255,255,0.8);
-    font-size: 16px;
-    max-width: 500px;
+
+  .header-inner {
+    max-width: 900px;
     margin: 0 auto;
+    padding: 40px 32px 48px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .logo-area {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 36px;
+  }
+
+  .logo-img {
+    height: 44px;
+    width: auto;
+    filter: brightness(0) invert(1);
+  }
+
+  .header-bg-circle {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.04);
+  }
+  .hbc1 { width: 400px; height: 400px; top: -150px; right: -100px; }
+  .hbc2 { width: 200px; height: 200px; bottom: -80px; left: 60px; }
+
+  header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 4vw, 42px);
+    color: var(--white);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 14px;
+  }
+
+  header h1 span {
+    color: var(--accent);
+  }
+
+  header p {
+    color: rgba(255,255,255,0.75);
+    font-size: 16px;
+    font-weight: 300;
+    max-width: 560px;
     line-height: 1.6;
   }
 
-  /* CONTAINER */
-  .container {
-    max-width: 720px;
-    margin: 0 auto;
-    padding: 40px 20px 80px;
-  }
-
-  /* SCREENS */
-  .screen { display: none; animation: fadeIn 0.5s ease; }
-  .screen.active { display: block; }
-  @keyframes fadeIn { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
-
-  /* WELCOME SCREEN */
-  .welcome-card {
+  /* STEPS BAR */
+  .steps-bar {
     background: var(--white);
-    border-radius: 20px;
-    padding: 48px 40px;
-    box-shadow: 0 4px 30px rgba(42,73,132,0.1);
-    text-align: center;
+    border-bottom: 1px solid var(--gray-light);
+    padding: 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 12px rgba(30,58,110,0.08);
   }
-  .welcome-card h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: 28px;
-    color: var(--blue-dark);
-    margin-bottom: 16px;
-  }
-  .welcome-card p {
-    color: var(--text-mid);
-    line-height: 1.7;
-    margin-bottom: 16px;
-    font-size: 15px;
-  }
-  .welcome-card .highlight {
-    background: var(--blue-pale);
-    border-left: 4px solid var(--blue-mid);
-    padding: 16px 20px;
-    border-radius: 0 12px 12px 0;
-    text-align: left;
-    margin: 24px 0;
-    font-style: italic;
-    color: var(--blue-dark);
-    font-size: 15px;
-  }
-  .dimensions-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-    margin: 24px 0;
-    text-align: left;
-  }
-  .dim-item {
-    background: var(--blue-pale);
-    border-radius: 10px;
-    padding: 12px 16px;
-    font-size: 13px;
-    color: var(--blue-dark);
-    font-weight: 500;
+
+  .steps-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 32px;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 0;
   }
-  .dim-item::before {
-    content: '';
-    width: 8px;
-    height: 8px;
-    background: var(--blue-mid);
+
+  .step-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 0;
+    flex: 1;
+    opacity: 0.4;
+    transition: opacity 0.3s;
+  }
+
+  .step-item.active { opacity: 1; }
+  .step-item.done { opacity: 0.7; }
+
+  .step-num {
+    width: 28px;
+    height: 28px;
     border-radius: 50%;
+    background: var(--gray-light);
+    color: var(--gray-text);
+    font-size: 12px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: all 0.3s;
+  }
+
+  .step-item.active .step-num {
+    background: var(--blue-mid);
+    color: white;
+  }
+
+  .step-item.done .step-num {
+    background: var(--green);
+    color: white;
+  }
+
+  .step-label {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--gray-text);
+    white-space: nowrap;
+  }
+
+  .step-item.active .step-label { color: var(--blue-deep); }
+
+  .step-sep {
+    width: 24px;
+    height: 1px;
+    background: var(--gray-light);
     flex-shrink: 0;
   }
 
-  /* EMAIL FORM */
-  .email-section {
-    margin-top: 32px;
-    text-align: left;
+  /* MAIN */
+  main {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 48px 32px 80px;
   }
-  .email-section label {
-    display: block;
-    font-weight: 600;
-    color: var(--blue-dark);
-    margin-bottom: 8px;
-    font-size: 14px;
-  }
-  .email-section input {
-    width: 100%;
-    padding: 14px 18px;
-    border: 2px solid var(--blue-light);
-    border-radius: 12px;
-    font-size: 15px;
-    font-family: 'DM Sans', sans-serif;
-    color: var(--text-dark);
-    transition: border-color 0.2s;
-    outline: none;
-  }
-  .email-section input:focus { border-color: var(--blue-mid); }
-  .email-section .note {
-    font-size: 12px;
-    color: var(--text-mid);
-    margin-top: 6px;
-  }
-  .error-msg {
-    color: #c0392b;
-    font-size: 13px;
-    margin-top: 8px;
+
+  /* SECTIONS */
+  .section {
     display: none;
+    animation: fadeUp 0.4s ease both;
   }
 
-  /* BUTTONS */
-  .btn-primary {
-    background: linear-gradient(135deg, var(--blue-mid), var(--blue-dark));
-    color: var(--white);
-    border: none;
-    padding: 16px 40px;
-    border-radius: 50px;
-    font-size: 16px;
-    font-weight: 600;
-    font-family: 'DM Sans', sans-serif;
-    cursor: pointer;
-    transition: transform 0.2s, box-shadow 0.2s;
-    box-shadow: 0 4px 20px rgba(48,100,173,0.35);
-    display: inline-block;
-    margin-top: 24px;
-    width: 100%;
+  .section.active { display: block; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
   }
-  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(48,100,173,0.45); }
-  .btn-primary:active { transform: translateY(0); }
-  .btn-secondary {
-    background: transparent;
-    color: var(--blue-mid);
-    border: 2px solid var(--blue-mid);
-    padding: 12px 32px;
-    border-radius: 50px;
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    color: var(--blue-deep);
+    margin-bottom: 8px;
+    font-weight: 600;
+  }
+
+  .section-sub {
+    color: var(--gray-text);
     font-size: 15px;
-    font-weight: 600;
-    font-family: 'DM Sans', sans-serif;
-    cursor: pointer;
-    transition: all 0.2s;
-    margin-top: 16px;
-    width: 100%;
-  }
-  .btn-secondary:hover { background: var(--blue-pale); }
-
-  /* PROGRESS */
-  .progress-bar-wrap {
-    background: var(--blue-light);
-    border-radius: 10px;
-    height: 6px;
     margin-bottom: 32px;
+    font-weight: 300;
+  }
+
+  /* ROL CARDS */
+  .roles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 16px;
+  }
+
+  .rol-card {
+    border: 2px solid var(--gray-light);
+    border-radius: 14px;
+    padding: 24px 22px;
+    cursor: pointer;
+    background: var(--white);
+    transition: all 0.25s;
+    position: relative;
     overflow: hidden;
   }
-  .progress-bar-fill {
+
+  .rol-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 4px;
     height: 100%;
-    background: linear-gradient(90deg, var(--blue-mid), var(--blue-dark));
-    border-radius: 10px;
-    transition: width 0.4s ease;
-  }
-  .progress-label {
-    font-size: 12px;
-    color: var(--text-mid);
-    text-align: right;
-    margin-bottom: 8px;
-    font-weight: 500;
+    background: var(--blue-light);
+    transform: scaleY(0);
+    transition: transform 0.25s;
+    transform-origin: bottom;
   }
 
-  /* SECTION CARD */
-  .section-header {
-    background: linear-gradient(135deg, var(--blue-dark), var(--blue-mid));
-    border-radius: 16px 16px 0 0;
-    padding: 24px 32px;
+  .rol-card:hover {
+    border-color: var(--blue-light);
+    box-shadow: 0 6px 24px rgba(30,58,110,0.1);
+    transform: translateY(-2px);
+  }
+
+  .rol-card:hover::before { transform: scaleY(1); }
+
+  .rol-card.selected {
+    border-color: var(--blue-mid);
+    background: var(--blue-pale);
+  }
+
+  .rol-card.selected::before { transform: scaleY(1); background: var(--blue-mid); }
+
+  .rol-icon {
+    font-size: 28px;
+    margin-bottom: 12px;
+    display: block;
+  }
+
+  .rol-name {
+    font-weight: 600;
+    font-size: 16px;
+    color: var(--blue-deep);
+    margin-bottom: 6px;
+  }
+
+  .rol-desc {
+    font-size: 13px;
+    color: var(--gray-text);
+    line-height: 1.5;
+    font-weight: 300;
+  }
+
+  /* PROBLEMAS */
+  .problemas-grid {
+    display: grid;
+    gap: 12px;
+  }
+
+  .problema-item {
+    border: 2px solid var(--gray-light);
+    border-radius: 12px;
+    padding: 18px 20px;
+    cursor: pointer;
+    background: var(--white);
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    transition: all 0.2s;
+  }
+
+  .problema-item:hover {
+    border-color: var(--blue-light);
+    background: #f0f6ff;
+  }
+
+  .problema-item.selected {
+    border-color: var(--blue-mid);
+    background: var(--blue-pale);
+  }
+
+  .problema-check {
+    width: 22px;
+    height: 22px;
+    border-radius: 6px;
+    border: 2px solid var(--gray-light);
+    flex-shrink: 0;
+    margin-top: 1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    font-size: 12px;
     color: white;
   }
-  .section-header .section-num {
-    font-size: 11px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--blue-light);
-    margin-bottom: 6px;
-    font-weight: 600;
-  }
-  .section-header h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 22px;
-    margin-bottom: 6px;
-  }
-  .section-header p {
-    font-size: 13px;
-    opacity: 0.85;
-    line-height: 1.5;
-  }
-  .questions-card {
-    background: var(--white);
-    border-radius: 0 0 16px 16px;
-    padding: 32px;
-    box-shadow: 0 4px 30px rgba(42,73,132,0.1);
-    margin-bottom: 24px;
+
+  .problema-item.selected .problema-check {
+    background: var(--blue-mid);
+    border-color: var(--blue-mid);
   }
 
-  /* QUESTION */
-  .question-item {
-    padding: 20px 0;
-    border-bottom: 1px solid var(--blue-pale);
-  }
-  .question-item:last-child { border-bottom: none; padding-bottom: 0; }
-  .question-text {
+  .problema-text {
     font-size: 14px;
-    line-height: 1.6;
-    color: var(--text-dark);
-    margin-bottom: 14px;
-    font-weight: 500;
+    color: var(--text);
+    line-height: 1.5;
+    font-weight: 400;
   }
-  .question-num {
-    display: inline-block;
-    background: var(--blue-pale);
-    color: var(--blue-mid);
+
+  .problema-category {
     font-size: 11px;
-    font-weight: 700;
-    padding: 2px 8px;
-    border-radius: 6px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--blue-light);
+    margin-bottom: 12px;
+    margin-top: 20px;
+  }
+
+  .problema-category:first-child { margin-top: 0; }
+
+  .insight-block {
+    background: var(--white);
+    border-left: 4px solid var(--blue-mid);
+    border-radius: 0 12px 12px 0;
+    padding: 24px 28px;
+    margin-bottom: 28px;
+    box-shadow: 0 2px 12px rgba(30,58,110,0.06);
+  }
+
+  .insight-block p {
+    font-size: 16px;
+    line-height: 1.75;
+    color: var(--text);
+    font-weight: 300;
+    font-style: italic;
+  }
+
+  .resultado-header {
+    background: var(--blue-deep);
+    border-radius: 16px;
+    padding: 28px 32px;
+    margin-bottom: 24px;
+    color: white;
+  }
+
+  .resultado-header h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 600;
     margin-bottom: 8px;
   }
-  .options-grid {
+
+  .resultado-header p {
+    font-size: 14px;
+    opacity: 0.8;
+    font-weight: 300;
+    line-height: 1.6;
+  }
+
+  .programas-list {
+    display: grid;
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+
+  .programa-card {
+    background: var(--white);
+    border-radius: 14px;
+    border: 1px solid var(--gray-light);
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(30,58,110,0.06);
+  }
+
+  .programa-card-header {
+    background: var(--blue-pale);
+    padding: 20px 24px 16px;
+    border-bottom: 1px solid var(--gray-light);
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  .programa-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--blue-deep);
+    margin-bottom: 4px;
+  }
+
+  .programa-meta {
+    font-size: 12px;
+    color: var(--gray-text);
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .programa-meta span {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .programa-badge {
+    background: var(--blue-mid);
+    color: white;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 20px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .programa-badge.accent {
+    background: var(--accent);
+  }
+
+  .programa-card-body {
+    padding: 20px 24px;
+  }
+
+  .programa-why {
+    font-size: 14px;
+    color: var(--text);
+    line-height: 1.7;
+    margin-bottom: 16px;
+    font-weight: 300;
+  }
+
+  .programa-why strong {
+    font-weight: 600;
+    color: var(--blue-deep);
+  }
+
+  .precios-title {
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--gray-text);
+    margin-bottom: 10px;
+  }
+
+  .precios-grid {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .precio-item {
+    background: var(--off-white);
+    border: 1px solid var(--gray-light);
+    border-radius: 10px;
+    padding: 10px 14px;
+    text-align: center;
+    min-width: 110px;
+  }
+
+  .precio-label {
+    font-size: 11px;
+    color: var(--gray-text);
+    font-weight: 500;
+    margin-bottom: 3px;
+  }
+
+  .precio-value {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--blue-deep);
+  }
+
+  .precio-note {
+    font-size: 10px;
+    color: var(--gray-text);
+    margin-top: 2px;
+  }
+
+  /* COMBO CARD */
+  .combo-card {
+    background: linear-gradient(135deg, var(--blue-deep) 0%, var(--blue-mid) 100%);
+    border-radius: 14px;
+    padding: 24px 28px;
+    color: white;
+    margin-top: 8px;
+  }
+
+  .combo-tag {
+    display: inline-block;
+    background: var(--accent);
+    color: var(--white);
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 20px;
+    margin-bottom: 12px;
+    letter-spacing: 0.03em;
+  }
+
+  .combo-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  .combo-desc {
+    font-size: 13px;
+    opacity: 0.85;
+    margin-bottom: 16px;
+    line-height: 1.6;
+    font-weight: 300;
+  }
+
+  .combo-precios {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .combo-precio {
+    background: rgba(255,255,255,0.12);
+    border-radius: 8px;
+    padding: 8px 12px;
+    text-align: center;
+    min-width: 90px;
+  }
+
+  .combo-precio-label { font-size: 11px; opacity: 0.75; margin-bottom: 2px; }
+  .combo-precio-value { font-size: 15px; font-weight: 700; }
+
+  /* CTA */
+  .cta-section {
+    background: var(--off-white);
+    border: 2px solid var(--gray-light);
+    border-radius: 16px;
+    padding: 28px 32px;
+    text-align: center;
+    margin-top: 12px;
+  }
+
+  .cta-section h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    color: var(--blue-deep);
+    margin-bottom: 8px;
+  }
+
+  .cta-section p {
+    font-size: 14px;
+    color: var(--gray-text);
+    margin-bottom: 20px;
+    font-weight: 300;
+    line-height: 1.6;
+  }
+
+  .cta-buttons {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn-whatsapp {
+    background: #25D366;
+    color: white;
+    border: none;
+    padding: 14px 28px;
+    border-radius: 10px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    transition: all 0.2s;
+    box-shadow: 0 4px 14px rgba(37,211,102,0.3);
+  }
+
+  .btn-whatsapp:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(37,211,102,0.4);
+  }
+
+  .btn-email {
+    background: var(--blue-deep);
+    color: white;
+    border: none;
+    padding: 14px 28px;
+    border-radius: 10px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+
+  .btn-email:hover {
+    background: var(--blue-mid);
+    transform: translateY(-2px);
+  }
+
+  /* NAV BUTTONS */
+  .nav-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 36px;
+    gap: 12px;
+  }
+
+  .btn-back {
+    background: none;
+    border: 2px solid var(--gray-light);
+    color: var(--gray-text);
+    padding: 12px 24px;
+    border-radius: 10px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .btn-back:hover {
+    border-color: var(--blue-light);
+    color: var(--blue-mid);
+  }
+
+  .btn-next {
+    background: var(--blue-mid);
+    color: white;
+    border: none;
+    padding: 14px 32px;
+    border-radius: 10px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 14px rgba(45,95,166,0.3);
+  }
+
+  .btn-next:hover:not(:disabled) {
+    background: var(--blue-deep);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(45,95,166,0.4);
+  }
+
+  .btn-next:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    box-shadow: none;
+  }
+
+  .btn-restart {
+    background: none;
+    border: 2px solid var(--gray-light);
+    color: var(--gray-text);
+    padding: 12px 20px;
+    border-radius: 10px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .btn-restart:hover { border-color: var(--blue-light); color: var(--blue-mid); }
+
+  .selected-count {
+    font-size: 13px;
+    color: var(--gray-text);
+    font-weight: 300;
+  }
+
+  .selected-count strong {
+    color: var(--blue-mid);
+    font-weight: 600;
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--blue-deep);
+    color: rgba(255,255,255,0.6);
+    text-align: center;
+    padding: 24px 32px;
+    font-size: 13px;
+    font-weight: 300;
+  }
+
+  footer a { color: var(--accent); text-decoration: none; }
+
+  /* RESPONSIVE */
+  @media (max-width: 600px) {
+    main { padding: 32px 20px 60px; }
+    .header-inner { padding: 28px 20px 36px; }
+    .roles-grid { grid-template-columns: 1fr 1fr; }
+    .steps-inner { gap: 0; }
+    .step-label { display: none; }
+    .precios-grid { flex-direction: column; }
+    .combo-precios { flex-direction: column; }
+    .cta-buttons { flex-direction: column; }
+    .nav-actions { flex-wrap: wrap; }
+  }
+
+
+  /* RECURSOS */
+  .recurso-wrapper { max-width: 680px; margin: 0 auto; }
+  .recurso-header {
+    background: #2c4c87;
+    border-radius: 16px; padding: 28px 24px;
+    margin-bottom: 8px; position: relative; overflow: hidden;
+  }
+  .recurso-header::before {
+    content: ''; position: absolute;
+    top: -50px; right: -50px;
+    width: 180px; height: 180px;
+    background: #2f64ac; opacity: 0.07; border-radius: 50%;
+  }
+  .recurso-header::after {
+    content: ''; position: absolute;
+    bottom: -30px; left: -30px;
+    width: 120px; height: 120px;
+    background: #5585c5; opacity: 0.05; border-radius: 50%;
+  }
+  .recurso-label {
+    font-size: 10px; font-weight: 600;
+    letter-spacing: 2.5px; text-transform: uppercase;
+    color: #5585c5; margin-bottom: 12px;
+  }
+  .recurso-titulo {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px; font-weight: 700;
+    color: #ffffff; line-height: 1.3; margin-bottom: 10px;
+  }
+  .recurso-subtitulo { font-size: 14px; color: rgba(255,255,255,0.65); line-height: 1.6; }
+  .dimensiones-container { display: flex; flex-direction: column; gap: 4px; margin-bottom: 8px; }
+  .dimension-item {
+    background: #ffffff; border-radius: 12px;
+    border: 1px solid #dde6f4; overflow: hidden;
+    transition: box-shadow 0.2s ease;
+  }
+  .dimension-item:hover { box-shadow: 0 4px 20px rgba(47,100,172,0.1); }
+  .dimension-header {
+    display: flex; align-items: center;
+    justify-content: space-between;
+    padding: 18px 20px; cursor: pointer;
+    user-select: none; gap: 12px;
+  }
+  .dimension-header-left { display: flex; align-items: center; gap: 14px; }
+  .dimension-num {
+    width: 28px; height: 28px; background: #eaf1fb;
+    border-radius: 8px; display: flex; align-items: center;
+    justify-content: center; font-size: 12px; font-weight: 700;
+    color: #2f64ac; flex-shrink: 0;
+  }
+  .dimension-item.open .dimension-num { background: #2f64ac; color: #ffffff; }
+  .dimension-nombre { font-size: 14px; font-weight: 600; color: #2c4c87; line-height: 1.3; }
+  .dimension-chevron {
+    width: 20px; height: 20px; flex-shrink: 0;
+    color: #8aa3c8; transition: transform 0.3s ease;
+  }
+  .dimension-item.open .dimension-chevron { transform: rotate(180deg); color: #2f64ac; }
+  .dimension-body {
+    display: none; padding: 0 20px 22px;
+    border-top: 1px solid #dde6f4;
+  }
+  .dimension-item.open .dimension-body { display: block; animation: fadeInDim 0.3s ease; }
+  @keyframes fadeInDim {
+    from { opacity: 0; transform: translateY(-6px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .dimension-intro {
+    font-size: 14px; color: #4a6080;
+    line-height: 1.7; padding-top: 18px; margin-bottom: 20px;
+  }
+  .practica-box {
+    background: #eaf1fb; border-left: 3px solid #2f64ac;
+    border-radius: 0 10px 10px 0; padding: 16px 18px;
+  }
+  .practica-label {
+    font-size: 10px; font-weight: 700; letter-spacing: 2px;
+    text-transform: uppercase; color: #2f64ac; margin-bottom: 10px;
+  }
+  .practica-texto { font-size: 13px; color: #1a2e50; line-height: 1.7; }
+  .practica-texto p + p { margin-top: 10px; }
+
+  /* LIDER/SUPERVISOR */
+  .contenido-card {
+    background: #ffffff; border-radius: 16px;
+    border: 1px solid #dde6f4; padding: 28px 24px; margin-bottom: 8px;
+  }
+  .contenido-texto { font-size: 15px; color: #4a6080; line-height: 1.75; margin-bottom: 20px; }
+  .contenido-texto p + p { margin-top: 14px; }
+  .dimensiones-lista { background: #eaf1fb; border-radius: 12px; padding: 18px 20px; margin-bottom: 24px; }
+  .dimensiones-label {
+    font-size: 10px; font-weight: 700; letter-spacing: 2px;
+    text-transform: uppercase; color: #2f64ac; margin-bottom: 12px;
+  }
+  .dimensiones-grid { display: flex; flex-direction: column; gap: 8px; }
+  .dimension-tag { display: flex; align-items: center; gap: 10px; font-size: 14px; color: #1a2e50; font-weight: 500; }
+  .dimension-dot { width: 6px; height: 6px; background: #2f64ac; border-radius: 50%; flex-shrink: 0; }
+  .btn-diagnostico {
+    display: block; background: #2c4c87; color: #ffffff;
+    font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 600;
+    text-align: center; text-decoration: none;
+    padding: 16px 20px; border-radius: 12px; transition: background 0.2s ease;
+  }
+  .btn-diagnostico:hover { background: #2f64ac; }
+  .btn-nota { font-size: 12px; color: #8aa3c8; text-align: center; margin-top: 10px; line-height: 1.5; }
+
+  /* CIERRE */
+  .cierre-universal {
+    background: #2c4c87; border-radius: 16px;
+    padding: 28px 24px; margin: 24px 0;
+  }
+  .cierre-universal p {
+    font-size: 16px; font-weight: 400; color: #daedf8; line-height: 1.7;
+  }
+
+  /* SIN DATOS */
+  .sin-datos {
+    background: #ffffff; border-radius: 16px;
+    border: 2px solid #e8eef6; padding: 48px 32px;
+    text-align: center; max-width: 480px; margin: 80px auto;
+  }
+  .sin-datos h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px; color: var(--blue-deep); margin-bottom: 12px;
+  }
+  .sin-datos p {
+    font-size: 15px; color: var(--gray-text);
+    line-height: 1.6; margin-bottom: 28px;
+  }
+
+  /* DIAGNÓSTICO EMBEBIDO */
+  .diagnostico-embed { padding: 8px 0; }
+  .diag-section-header {
+    background: linear-gradient(135deg, #2c4c87, #2f64ac);
+    border-radius: 12px 12px 0 0;
+    padding: 20px 24px;
+    color: white;
+    margin-top: 16px;
+  }
+  .diag-section-num {
+    font-size: 11px; letter-spacing: 2px;
+    text-transform: uppercase; color: #cbd9ec;
+    margin-bottom: 4px; font-weight: 600;
+  }
+  .diag-section-header h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px; margin-bottom: 4px;
+  }
+  .diag-section-header p { font-size: 13px; opacity: 0.85; }
+  .diag-questions-card {
+    background: #ffffff;
+    border-radius: 0 0 12px 12px;
+    padding: 24px;
+    border: 1px solid #dde6f4;
+    border-top: none;
+    margin-bottom: 8px;
+  }
+  .diag-question-item {
+    padding: 16px 0;
+    border-bottom: 1px solid #eaf1fb;
+  }
+  .diag-question-item:last-child { border-bottom: none; padding-bottom: 0; }
+  .diag-question-num {
+    display: inline-block;
+    background: #eaf1fb; color: #2f64ac;
+    font-size: 11px; font-weight: 700;
+    padding: 2px 8px; border-radius: 6px; margin-bottom: 6px;
+  }
+  .diag-question-text {
+    font-size: 14px; line-height: 1.6;
+    color: #1a2840; margin-bottom: 12px; font-weight: 500;
+  }
+  .diag-options-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 8px;
   }
-  .option-btn {
-    border: 2px solid var(--blue-light);
-    background: var(--white);
-    border-radius: 10px;
-    padding: 10px 6px;
-    cursor: pointer;
+  .diag-option-btn {
+    border: 2px solid #dde6f4; background: #ffffff;
+    border-radius: 10px; padding: 10px 6px;
+    cursor: pointer; transition: all 0.2s;
+    text-align: center; font-family: 'DM Sans', sans-serif;
+  }
+  .diag-option-btn .opt-num {
+    display: block; font-size: 18px; font-weight: 700;
+    color: #2f64ac; line-height: 1; margin-bottom: 4px;
+  }
+  .diag-option-btn .opt-label {
+    font-size: 10px; color: #5a6a80; line-height: 1.2; font-weight: 500;
+  }
+  .diag-option-btn:hover { border-color: #2f64ac; background: #eaf1fb; }
+  .diag-option-btn.selected { border-color: #2c4c87; background: #2c4c87; }
+  .diag-option-btn.selected .opt-num,
+  .diag-option-btn.selected .opt-label { color: white; }
+  .diag-progress-wrap {
+    background: #dde6f4; border-radius: 10px;
+    height: 6px; margin-bottom: 8px; overflow: hidden;
+  }
+  .diag-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #2f64ac, #2c4c87);
+    border-radius: 10px; transition: width 0.4s ease;
+  }
+  .diag-progress-label {
+    font-size: 12px; color: #5a6a80;
+    text-align: right; margin-bottom: 6px; font-weight: 500;
+  }
+  .diag-unanswered {
+    color: #c0392b; font-size: 13px;
+    margin-top: 8px; display: none;
+  }
+  .diag-nav { display: flex; gap: 12px; margin-top: 16px; }
+  .diag-btn-next {
+    background: #2c4c87; color: white; border: none;
+    padding: 14px 32px; border-radius: 10px;
+    font-family: 'DM Sans', sans-serif; font-size: 15px;
+    font-weight: 600; cursor: pointer; flex: 1;
     transition: all 0.2s;
-    text-align: center;
-    font-family: 'DM Sans', sans-serif;
   }
-  .option-btn .opt-num {
-    display: block;
-    font-size: 18px;
-    font-weight: 700;
-    color: var(--blue-mid);
-    line-height: 1;
-    margin-bottom: 4px;
+  .diag-btn-next:hover { background: #2f64ac; }
+  .diag-btn-prev {
+    background: none; border: 2px solid #dde6f4;
+    color: #5a6a80; padding: 12px 24px;
+    border-radius: 10px; font-family: 'DM Sans', sans-serif;
+    font-size: 14px; font-weight: 500; cursor: pointer;
+    transition: all 0.2s; display: none;
   }
-  .option-btn .opt-label {
-    font-size: 10px;
-    color: var(--text-mid);
-    line-height: 1.2;
-    font-weight: 500;
+  .diag-btn-prev:hover { border-color: #2f64ac; color: #2f64ac; }
+  .diag-result-header {
+    background: linear-gradient(135deg, #2c4c87, #2f64ac);
+    border-radius: 16px; padding: 32px 28px;
+    color: white; text-align: center; margin-bottom: 16px;
   }
-  .option-btn:hover { border-color: var(--blue-mid); background: var(--blue-pale); }
-  .option-btn.selected {
-    border-color: var(--blue-dark);
-    background: var(--blue-dark);
+  .diag-result-tag {
+    display: inline-block; background: rgba(255,255,255,0.15);
+    color: #cbd9ec; font-size: 11px; font-weight: 600;
+    letter-spacing: 3px; text-transform: uppercase;
+    padding: 6px 16px; border-radius: 20px; margin-bottom: 12px;
   }
-  .option-btn.selected .opt-num,
-  .option-btn.selected .opt-label { color: white; }
-
-  .nav-buttons { display: flex; gap: 12px; margin-top: 8px; }
-  .nav-buttons .btn-primary { margin-top: 0; }
-  .nav-buttons .btn-secondary { margin-top: 0; }
-  .unanswered-msg {
-    color: #c0392b;
-    font-size: 13px;
-    margin-top: 8px;
-    display: none;
+  .diag-result-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px; margin-bottom: 8px;
   }
-
-  /* RESULTS */
-  .result-header {
-    background: linear-gradient(135deg, var(--blue-dark) 0%, var(--blue-mid) 100%);
-    border-radius: 20px;
-    padding: 40px 36px;
-    color: white;
-    text-align: center;
-    margin-bottom: 24px;
-    position: relative;
-    overflow: hidden;
+  .diag-profile-name { font-size: 16px; font-weight: 300; opacity: 0.9; margin-bottom: 16px; }
+  .diag-total-score {
+    display: inline-block; background: rgba(255,255,255,0.15);
+    border-radius: 10px; padding: 10px 20px; font-size: 13px;
   }
-  .result-header::before {
-    content: '';
-    position: absolute;
-    top: -30%;
-    right: -10%;
-    width: 40%;
-    height: 160%;
-    background: rgba(255,255,255,0.05);
-    border-radius: 50%;
-  }
-  .result-header .result-tag {
-    display: inline-block;
-    background: rgba(255,255,255,0.15);
-    color: var(--blue-light);
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    padding: 6px 16px;
-    border-radius: 20px;
+  .diag-total-score strong { font-size: 24px; display: block; }
+  .diag-scores-card {
+    background: white; border-radius: 12px;
+    padding: 24px; border: 1px solid #dde6f4;
     margin-bottom: 16px;
   }
-  .result-header h2 {
+  .diag-scores-card h3 {
     font-family: 'Playfair Display', serif;
-    font-size: clamp(24px, 4vw, 36px);
-    margin-bottom: 8px;
+    font-size: 18px; color: #2c4c87; margin-bottom: 20px;
   }
-  .result-header .profile-name {
-    font-size: 20px;
-    font-weight: 300;
-    opacity: 0.9;
-    margin-bottom: 20px;
+  .diag-dim-item { margin-bottom: 16px; }
+  .diag-dim-item:last-child { margin-bottom: 0; }
+  .diag-dim-header {
+    display: flex; justify-content: space-between;
+    align-items: center; margin-bottom: 6px;
   }
-  .total-score {
-    display: inline-block;
-    background: rgba(255,255,255,0.15);
-    border-radius: 12px;
-    padding: 12px 24px;
-    font-size: 14px;
-  }
-  .total-score strong { font-size: 28px; display: block; }
-
-  /* DIMENSION SCORES */
-  .scores-card {
-    background: var(--white);
-    border-radius: 16px;
-    padding: 32px;
-    box-shadow: 0 4px 20px rgba(42,73,132,0.08);
-    margin-bottom: 24px;
-  }
-  .scores-card h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 20px;
-    color: var(--blue-dark);
-    margin-bottom: 24px;
-  }
-  .dim-score-item {
-    margin-bottom: 20px;
-  }
-  .dim-score-item:last-child { margin-bottom: 0; }
-  .dim-score-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 8px;
-  }
-  .dim-score-name {
-    font-weight: 600;
-    font-size: 14px;
-    color: var(--text-dark);
-  }
-  .dim-score-val {
-    font-size: 13px;
-    color: var(--blue-mid);
-    font-weight: 600;
-  }
-  .dim-bar {
-    background: var(--blue-pale);
-    border-radius: 6px;
-    height: 8px;
-    overflow: hidden;
-  }
-  .dim-bar-fill {
+  .diag-dim-name { font-weight: 600; font-size: 13px; color: #1a2840; }
+  .diag-dim-val { font-size: 13px; color: #2f64ac; font-weight: 600; }
+  .diag-dim-bar { background: #eaf1fb; border-radius: 6px; height: 8px; overflow: hidden; }
+  .diag-dim-bar-fill {
     height: 100%;
-    background: linear-gradient(90deg, var(--blue-mid), var(--blue-dark));
-    border-radius: 6px;
-    transition: width 1s ease;
+    background: linear-gradient(90deg, #2f64ac, #2c4c87);
+    border-radius: 6px; transition: width 1s ease;
   }
-
-  /* PROFILE CONTENT */
-  .profile-card {
-    background: var(--white);
-    border-radius: 16px;
-    padding: 32px;
-    box-shadow: 0 4px 20px rgba(42,73,132,0.08);
-    margin-bottom: 24px;
+  .diag-profile-card {
+    background: white; border-radius: 12px;
+    padding: 24px; border: 1px solid #dde6f4; margin-bottom: 16px;
   }
-  .profile-card .intro-quote {
-    background: var(--blue-pale);
-    border-left: 4px solid var(--blue-mid);
-    padding: 16px 20px;
-    border-radius: 0 12px 12px 0;
-    font-style: italic;
-    color: var(--blue-dark);
-    font-size: 14px;
-    margin-bottom: 28px;
-    line-height: 1.6;
+  .diag-intro-quote {
+    background: #eaf1fb; border-left: 4px solid #2f64ac;
+    padding: 14px 18px; border-radius: 0 10px 10px 0;
+    font-style: italic; color: #2c4c87; font-size: 14px;
+    margin-bottom: 24px; line-height: 1.6;
   }
-  .profile-section {
-    margin-bottom: 28px;
-  }
-  .profile-section h4 {
+  .diag-profile-section { margin-bottom: 24px; }
+  .diag-profile-section h4 {
     font-family: 'Playfair Display', serif;
-    font-size: 17px;
-    color: var(--blue-dark);
-    margin-bottom: 14px;
-    padding-bottom: 8px;
-    border-bottom: 2px solid var(--blue-pale);
+    font-size: 16px; color: #2c4c87; margin-bottom: 12px;
+    padding-bottom: 6px; border-bottom: 2px solid #eaf1fb;
   }
-  .profile-list {
-    list-style: none;
-    padding: 0;
+  .diag-profile-list { list-style: none; padding: 0; }
+  .diag-profile-list li {
+    padding: 7px 0 7px 18px; position: relative;
+    font-size: 14px; line-height: 1.6; color: #4a6080;
+    border-bottom: 1px solid #eaf1fb;
   }
-  .profile-list li {
-    padding: 8px 0 8px 20px;
-    position: relative;
-    font-size: 14px;
-    line-height: 1.6;
-    color: var(--text-mid);
-    border-bottom: 1px solid var(--blue-pale);
+  .diag-profile-list li:last-child { border-bottom: none; }
+  .diag-profile-list li::before {
+    content: ''; position: absolute; left: 0; top: 16px;
+    width: 7px; height: 7px; background: #2f64ac; border-radius: 50%;
   }
-  .profile-list li:last-child { border-bottom: none; }
-  .profile-list li::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 17px;
-    width: 8px;
-    height: 8px;
-    background: var(--blue-mid);
-    border-radius: 50%;
+  .diag-evolution-grid { display: grid; gap: 12px; }
+  .diag-evolution-block { background: #eaf1fb; border-radius: 10px; padding: 16px 18px; }
+  .diag-evolution-block h5 {
+    font-size: 11px; font-weight: 700; letter-spacing: 1.5px;
+    text-transform: uppercase; color: #2f64ac; margin-bottom: 8px;
   }
-  .evolution-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 16px;
+  .diag-evolution-block ul { list-style: none; padding: 0; }
+  .diag-evolution-block ul li {
+    font-size: 13px; color: #1a2840;
+    padding: 4px 0 4px 14px; position: relative; line-height: 1.5;
   }
-  .evolution-block {
-    background: var(--blue-pale);
-    border-radius: 12px;
-    padding: 18px 20px;
+  .diag-evolution-block ul li::before {
+    content: '→'; position: absolute; left: 0;
+    color: #2f64ac; font-size: 11px; top: 5px;
   }
-  .evolution-block h5 {
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    color: var(--blue-mid);
-    margin-bottom: 10px;
+  .diag-profile-closing {
+    background: linear-gradient(135deg, #eaf1fb, #dde6f4);
+    border-radius: 10px; padding: 18px 20px; font-size: 14px;
+    color: #2c4c87; line-height: 1.7; font-style: italic; margin-top: 8px;
   }
-  .evolution-block ul {
-    list-style: none;
-    padding: 0;
-  }
-  .evolution-block ul li {
-    font-size: 13px;
-    color: var(--text-dark);
-    padding: 5px 0 5px 16px;
-    position: relative;
-    line-height: 1.5;
-  }
-  .evolution-block ul li::before {
-    content: '→';
-    position: absolute;
-    left: 0;
-    color: var(--blue-mid);
-    font-size: 11px;
-    top: 6px;
-  }
-  .profile-closing {
-    background: linear-gradient(135deg, var(--blue-pale), var(--blue-light));
-    border-radius: 12px;
-    padding: 20px 24px;
-    font-size: 14px;
-    color: var(--blue-dark);
-    line-height: 1.7;
-    font-style: italic;
-    margin-top: 8px;
-  }
-
-  /* CTA */
-  .cta-card {
-    background: linear-gradient(135deg, var(--blue-dark), var(--blue-mid));
-    border-radius: 20px;
-    padding: 40px 36px;
-    text-align: center;
-    color: white;
-    margin-bottom: 24px;
-  }
-  .cta-card h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 24px;
-    margin-bottom: 12px;
-  }
-  .cta-card p {
-    opacity: 0.9;
-    font-size: 15px;
-    line-height: 1.6;
-    margin-bottom: 28px;
-    max-width: 460px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  .cta-btn {
-    display: inline-block;
-    background: white;
-    color: var(--blue-dark);
-    font-weight: 700;
-    font-size: 15px;
-    padding: 16px 36px;
-    border-radius: 50px;
-    text-decoration: none;
-    transition: all 0.2s;
-    font-family: 'DM Sans', sans-serif;
-    border: none;
-    cursor: pointer;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-  }
-  .cta-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(0,0,0,0.2); }
-  .cta-btn-outline {
-    display: inline-block;
-    background: transparent;
-    color: white;
-    font-weight: 700;
-    font-size: 15px;
-    padding: 16px 36px;
-    border-radius: 50px;
-    text-decoration: none;
-    transition: all 0.2s;
-    font-family: 'DM Sans', sans-serif;
-    border: 2px solid white;
-    cursor: pointer;
-    margin-top: 16px;
-  }
-  .cta-btn-outline:hover { background: rgba(255,255,255,0.15); transform: translateY(-2px); }
-
-  /* LOADING */
-  .loading-screen {
-    text-align: center;
-    padding: 60px 20px;
-  }
-  .spinner {
-    width: 50px;
-    height: 50px;
-    border: 4px solid var(--blue-light);
-    border-top-color: var(--blue-mid);
-    border-radius: 50%;
-    animation: spin 0.8s linear infinite;
-    margin: 0 auto 20px;
-  }
-  @keyframes spin { to { transform: rotate(360deg); } }
-  .loading-screen p { color: var(--text-mid); font-size: 15px; }
-
-  /* ALREADY DONE */
-  .already-done {
-    background: var(--white);
-    border-radius: 20px;
-    padding: 48px 40px;
-    text-align: center;
-    box-shadow: 0 4px 30px rgba(42,73,132,0.1);
-  }
-  .already-done .icon { font-size: 48px; margin-bottom: 20px; }
-  .already-done h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: 26px;
-    color: var(--blue-dark);
-    margin-bottom: 12px;
-  }
-  .already-done p { color: var(--text-mid); line-height: 1.7; font-size: 15px; }
-
   @media (max-width: 600px) {
-    .dimensions-grid { grid-template-columns: 1fr; }
-    .options-grid { grid-template-columns: repeat(2, 1fr); }
-    .welcome-card, .questions-card, .scores-card, .profile-card { padding: 24px 20px; }
-    .result-header { padding: 32px 24px; }
-    .cta-card { padding: 32px 24px; }
-    .nav-buttons { flex-direction: column; }
+    .diag-options-grid { grid-template-columns: repeat(2, 1fr); }
   }
+
 </style>
 </head>
 <body>
 
-<div class="header">
-  <div class="header-tag">Autodiagnóstico</div>
-  <h1>Diagnóstico de Liderazgo <span>Consciente</span></h1>
-  <p>Un espacio diseñado para tu evolución. Frenar, mirar hacia adentro y potenciar tu impacto.</p>
-</div>
-
-<div class="container">
-
-  <!-- SCREEN: WELCOME -->
-  <div class="screen active" id="screen-welcome">
-    <div class="welcome-card">
-      <h2>Liderazgo en la práctica real</h2>
-      <p>Dejamos de lado los estilos ideales para enfocarnos en tu ejecución diaria. Este espacio analiza tu capacidad de respuesta ante la exigencia y la incertidumbre.</p>
-      <div class="highlight">
-        "Respondé desde lo que hacés hoy, no desde lo que te gustaría hacer. La honestidad es tu mejor herramienta aquí."
-      </div>
-      <p>Exploraremos cinco dimensiones clave de tu liderazgo:</p>
-      <div class="dimensions-grid">
-        <div class="dim-item">Toma de decisiones</div>
-        <div class="dim-item">Gestión emocional</div>
-        <div class="dim-item">Comunicación y feedback</div>
-        <div class="dim-item">Visión y estrategia</div>
-        <div class="dim-item" style="grid-column: span 2; justify-content: center;">Desarrollo de talento</div>
-      </div>
-      <div class="email-section">
-        <label for="email-input">Tu correo electrónico</label>
-        <input type="email" id="email-input" placeholder="nombre@ejemplo.com" />
-        <div class="note">Solo podés realizar este diagnóstico una vez por correo.</div>
-        <div class="error-msg" id="email-error">Por favor ingresá un correo válido.</div>
-        <div class="error-msg" id="email-used">Este correo ya realizó el diagnóstico.</div>
-      </div>
-      <button class="btn-primary" onclick="startDiagnostic()">Comenzar diagnóstico →</button>
+<header>
+  <div class="header-bg-circle hbc1"></div>
+  <div class="header-bg-circle hbc2"></div>
+  <div class="header-inner">
+    <div class="logo-area">
+      <svg width="36" height="36" viewBox="0 0 100 100" fill="none">
+        <path d="M50 10 C30 10, 15 28, 20 48 C25 65, 40 72, 50 90 C60 72, 75 65, 80 48 C85 28, 70 10, 50 10Z" fill="rgba(255,255,255,0.2)"/>
+        <path d="M50 15 C35 15, 22 30, 26 47 C30 62, 43 69, 50 85 C57 69, 70 62, 74 47 C78 30, 65 15, 50 15Z" fill="rgba(255,255,255,0.15)"/>
+        <ellipse cx="65" cy="35" rx="14" ry="10" fill="rgba(200,169,110,0.8)" transform="rotate(-30 65 35)"/>
+        <ellipse cx="68" cy="52" rx="12" ry="8" fill="rgba(200,169,110,0.6)" transform="rotate(-10 68 52)"/>
+        <line x1="50" y1="15" x2="65" y2="32" stroke="rgba(200,169,110,0.9)" stroke-width="1.5"/>
+        <line x1="50" y1="15" x2="68" y2="48" stroke="rgba(200,169,110,0.7)" stroke-width="1.5"/>
+      </svg>
+      <span style="font-family:'Playfair Display',serif; font-size:20px; color:white; font-weight:600;">Aleesha <span style="color:var(--accent)">Growth</span></span>
     </div>
+    <h1>Tu <span>recurso gratuito</span></h1>
+    <p>Basado en tu rol y las situaciones que reconociste.</p>
   </div>
+</header>
 
-  <!-- SCREEN: ALREADY DONE -->
-  <div class="screen" id="screen-done">
-    <div class="already-done">
-      <div class="icon">✓</div>
-      <h2>Ya realizaste este diagnóstico</h2>
-      <p>Registramos que este correo ya completó el Diagnóstico de Liderazgo Consciente.<br><br>Si tenés preguntas o querés conocer más sobre los programas de desarrollo, podés contactarnos directamente.</p>
-    </div>
-  </div>
+<main id="main-content">
+  <!-- Se genera dinámicamente por JS -->
+</main>
 
-  <!-- SCREEN: SECTION INTRO -->
-  <div class="screen" id="screen-section-intro">
-    <div id="section-intro-content"></div>
-    <button class="btn-primary" onclick="showQuestions()" id="btn-start-section">Comenzar esta sección →</button>
-  </div>
-
-  <!-- SCREEN: QUESTIONS -->
-  <div class="screen" id="screen-questions">
-    <div class="progress-label" id="progress-label"></div>
-    <div class="progress-bar-wrap">
-      <div class="progress-bar-fill" id="progress-bar"></div>
-    </div>
-    <div id="questions-content"></div>
-    <div class="unanswered-msg" id="unanswered-msg">Por favor respondé todas las preguntas antes de continuar.</div>
-    <div class="nav-buttons">
-      <button class="btn-secondary" onclick="prevSection()" id="btn-prev" style="display:none">← Anterior</button>
-      <button class="btn-primary" onclick="nextSection()" id="btn-next">Siguiente →</button>
-    </div>
-  </div>
-
-  <!-- SCREEN: LOADING -->
-  <div class="screen" id="screen-loading">
-    <div class="loading-screen">
-      <div class="spinner"></div>
-      <p>Analizando tu diagnóstico…</p>
-    </div>
-  </div>
-
-  <!-- SCREEN: RESULTS -->
-  <div class="screen" id="screen-results">
-    <div id="results-content"></div>
-  </div>
-
-</div>
+<footer>
+  <strong style="color:rgba(255,255,255,0.85)">Aleesha Growth</strong> · Virginia Cardinaux ·
+  <a href="https://wa.me/message/OY2XJPLGZKXMJ1" target="_blank" style="color:var(--accent)">WhatsApp</a>
+</footer>
 
 <script>
-const STORAGE_KEY = 'dlc_responses';
+// ===== DATOS (copiados del index) =====
 
-const sections = [
+const PROBLEMAS = {
+  sm: [
+    { id: 'sm1', text: 'Estoy en varios equipos a la vez, salto de uno a otro y no logro profundidad en ninguno.', tags: ['rol','aletheia','velar'] },
+    { id: 'sm2', text: 'El equipo trabaja y avanza, pero no veo impacto real en lo que entregamos.', tags: ['metricas','mccr','okr'] },
+    { id: 'sm3', text: 'Las prioridades cambian todo el tiempo o no están claras, el equipo avanza sin una dirección firme.', tags: ['priorizacion','mccr','okr'] },
+    { id: 'sm4', text: 'Medimos cosas, pero no sirven para tomar decisiones ni entender si estamos generando valor.', tags: ['metricas','mccr'] },
+    { id: 'sm5', text: 'Resuelvo cosas en el momento, pero los mismos problemas vuelven una y otra vez.', tags: ['sistemico','aletheia'] },
+    { id: 'sm6', text: 'El equipo no propone, no prueba cosas nuevas y evita equivocarse.', tags: ['cultura','velar','aletheia'] },
+    { id: 'sm7', text: 'El equipo se traba por cosas externas y no logro destrabarlas.', tags: ['sistemico','aletheia'] },
+    { id: 'sm8', text: 'Tenemos las reuniones, pero no generan decisiones ni cambios reales.', tags: ['proceso','aletheia','velar'] },
+    { id: 'sm9', text: 'El equipo me ve como alguien que controla el proceso, no como alguien que ayuda.', tags: ['liderazgo','velar','aletheia'] },
+    { id: 'sm10', text: 'Quiero cambiar cosas, pero no tengo lugar ni respaldo para hacerlo.', tags: ['influencia','velar','aletheia'] },
+    { id: 'sm11', text: 'No logro involucrar a líderes o stakeholders para destrabar problemas.', tags: ['comunicacion','velar'] },
+    { id: 'sm12', text: 'Termino organizando tareas o haciendo seguimiento en lugar de ayudar al equipo a mejorar.', tags: ['rol','velar','aletheia'] },
+    { id: 'sm13', text: 'Vivimos resolviendo urgencias y nunca hay tiempo para mejorar.', tags: ['urgente','aletheia','mccr'] },
+    { id: 'sm14', text: 'El equipo está callado y no sé si está alineado o simplemente desconectado.', tags: ['cultura','velar'] },
+    { id: 'sm15', text: 'No logramos terminar lo que empezamos, siempre quedan cosas a medio hacer.', tags: ['proceso','mccr'] },
+    { id: 'sm16', text: 'Lo que entregamos no coincide con lo que esperan y aparecen reprocesos.', tags: ['comunicacion','velar','aletheia'] },
+  ],
+  po: [
+    { id: 'po1', text: 'El backlog es una lista de pedidos, no una herramienta para tomar decisiones.', tags: ['backlog','mccr','aletheia'] },
+    { id: 'po2', text: 'Termino priorizando por presión o urgencia, no por valor.', tags: ['priorizacion','mccr'] },
+    { id: 'po3', text: 'Tenemos historias, pero no está claro para qué sirven ni qué impacto buscan.', tags: ['valor','mccr'] },
+    { id: 'po4', text: 'El equipo hace cosas, pero no entiende hacia dónde va el producto ni por qué importa.', tags: ['vision','aletheia'] },
+    { id: 'po5', text: 'Vamos sprint a sprint resolviendo cosas, pero sin una dirección clara que guíe las decisiones.', tags: ['vision','mccr','aletheia'] },
+    { id: 'po6', text: 'El alcance crece todo el tiempo y el equipo no da abasto.', tags: ['scope','mccr'] },
+    { id: 'po7', text: 'Entregamos funcionalidades, pero no puedo mostrar qué impacto generan.', tags: ['metricas','mccr'] },
+    { id: 'po8', text: 'El negocio no entiende al equipo y el equipo no entiende al negocio. No logro alinear a ninguno.', tags: ['comunicacion','velar','aletheia'] },
+    { id: 'po9', text: 'Estoy en el rol, pero no tengo claro qué se espera de mí.', tags: ['rol','aletheia'] },
+    { id: 'po10', text: 'No tengo métricas claras para saber si el producto realmente está avanzando.', tags: ['metricas','mccr','okr'] },
+    { id: 'po11', text: 'Los stakeholders piden cosas distintas y no logro ordenar ni decir que no.', tags: ['stakeholders','velar','aletheia'] },
+    { id: 'po12', text: 'Validamos poco o nada, construimos cosas sin saber si realmente sirven.', tags: ['valor','mccr','aletheia'] },
+  ],
+  pm: [
+    { id: 'pm1', text: 'Gestiono plazos y entregables, pero los resultados no impactan en el negocio.', tags: ['resultados','mccr'] },
+    { id: 'pm2', text: 'Lo acordado no se cumple, el equipo asiente en las reuniones y después hace otra cosa.', tags: ['accountability','aletheia','velar'] },
+    { id: 'pm3', text: 'Las tareas no tienen un dueño claro, nadie se hace responsable de verdad.', tags: ['accountability','aletheia'] },
+    { id: 'pm4', text: 'Los stakeholders desaparecen y aparecen al final para cambiarlo todo.', tags: ['stakeholders','velar'] },
+    { id: 'pm5', text: 'El alcance crece sin control y no tengo cómo frenarlo con criterio.', tags: ['scope','mccr'] },
+    { id: 'pm6', text: 'Me imponen plazos irreales y no sé cómo negociar sin perder credibilidad.', tags: ['comunicacion','velar','mccr'] },
+    { id: 'pm7', text: 'El equipo ejecuta tareas sin entender el para qué, hay poco compromiso y alta rotación.', tags: ['motivacion','aletheia','velar'] },
+    { id: 'pm8', text: 'Reporto avance pero no puedo demostrar impacto real ni valor generado.', tags: ['metricas','mccr','okr'] },
+    { id: 'pm9', text: 'No sé cómo comunicarme con los líderes sin perder credibilidad.', tags: ['comunicacion','velar'] },
+    { id: 'pm10', text: 'Todo pasa por mí, no puedo delegar sin que algo se rompa.', tags: ['liderazgo','aletheia','velar'] },
+    { id: 'pm11', text: 'Intento incorporar prácticas ágiles pero el equipo o la organización no acompañan.', tags: ['cambio','aletheia'] },
+    { id: 'pm12', text: 'Vivimos apagando incendios, nunca hay tiempo para planificar bien.', tags: ['urgente','aletheia','mccr'] },
+    { id: 'pm13', text: 'Los equipos trabajan en silos, cada uno avanza por su lado sin coordinación.', tags: ['alineacion','aletheia','okr'] },
+  ],
+  coach: [
+    { id: 'ac1', text: 'Hago talleres y capacitaciones, pero el cambio real no llega.', tags: ['cambio','aletheia','mccr'] },
+    { id: 'ac2', text: 'Lo que declaran como cultura y lo que viven día a día son cosas distintas.', tags: ['cultura','aletheia','velar'] },
+    { id: 'ac3', text: 'Los líderes dicen que apoyan la transformación, pero sus comportamientos no cambian.', tags: ['liderazgo','aletheia','velar'] },
+    { id: 'ac4', text: 'No tengo métricas para mostrar el impacto de lo que estoy haciendo.', tags: ['metricas','mccr'] },
+    { id: 'ac5', text: 'Logro cambios en los equipos, pero no llego a impactar la organización.', tags: ['organizacion','aletheia'] },
+    { id: 'ac6', text: 'Entiendo de agilidad, pero no sé cómo moverme en la política interna sin chocar.', tags: ['influencia','velar','aletheia'] },
+    { id: 'ac7', text: 'Puedo trabajar con equipos, pero no sé cómo acompañar a gerentes o directores.', tags: ['liderazgo','aletheia','velar'] },
+    { id: 'ac8', text: 'La resistencia viene de arriba y no tengo herramientas para gestionarla.', tags: ['cambio','aletheia','velar'] },
+    { id: 'ac9', text: 'Cada equipo hace las cosas a su manera, no hay coherencia ni aprendizaje compartido.', tags: ['cultura','aletheia','mccr'] },
+    { id: 'ac10', text: 'Me contrataron para transformar, pero no me dan el acceso ni el respaldo para hacerlo.', tags: ['influencia','velar','aletheia'] },
+    { id: 'ac11', text: 'Esperan resultados rápidos y no entienden que el cambio cultural lleva tiempo.', tags: ['cambio','aletheia','velar'] },
+  ],
+  lider: [
+    { id: 'l1', text: 'Termino resolviendo todo yo, no logro delegar de verdad.', tags: ['liderazgo','aletheia','velar'] },
+    { id: 'l2', text: 'Doy feedback pero los comportamientos no cambian, los mismos problemas se repiten.', tags: ['feedback','velar','aletheia'] },
+    { id: 'l3', text: 'El equipo trabaja, pero cada uno tira para su lado, no hay alineación real.', tags: ['alineacion','aletheia','mccr','okr'] },
+    { id: 'l4', text: 'Pierdo gente clave y cuando me doy cuenta ya es tarde.', tags: ['motivacion','aletheia','velar'] },
+    { id: 'l5', text: 'Estoy todo el día en lo operativo y no tengo tiempo para lo estratégico.', tags: ['estrategia','aletheia','mccr'] },
+    { id: 'l6', text: 'Me entero tarde de los problemas reales, el equipo no me dice lo que pasa.', tags: ['comunicacion','velar'] },
+    { id: 'l7', text: 'Los valores que decimos tener no se ven en las decisiones ni en el día a día.', tags: ['cultura','aletheia','velar'] },
+    { id: 'l8', text: 'El equipo evita equivocarse, no toma iniciativa ni propone nada nuevo.', tags: ['cultura','aletheia','velar'] },
+    { id: 'l9', text: 'Anuncio cambios que al poco tiempo vuelven a lo mismo de siempre.', tags: ['cambio','aletheia'] },
+    { id: 'l10', text: 'Lo urgente siempre desplaza lo importante, nunca llegamos a lo estratégico.', tags: ['urgente','mccr','aletheia'] },
+    { id: 'l11', text: 'Tengo reuniones todo el día pero no avanzo en lo que realmente importa.', tags: ['urgente','aletheia','velar'] },
+    { id: 'l12', text: 'El equipo me consulta todo, no toman decisiones sin mí.', tags: ['liderazgo','aletheia','velar'] },
+    { id: 'l13', text: 'No logro que el equipo se comprometa más allá de cumplir con lo mínimo.', tags: ['motivacion','velar','aletheia'] },
+  ],
+  supervisor: [
+    { id: 'sv1', text: 'Estoy todo el tiempo en el medio, entre lo que pide la operación y lo que exige la dirección.', tags: ['urgente','aletheia','velar'] },
+    { id: 'sv2', text: 'Tengo responsabilidad sobre los resultados pero no tengo autoridad para decidir.', tags: ['autoridad','velar','aletheia'] },
+    { id: 'sv3', text: 'Sigo haciendo tareas operativas en lugar de liderar, no logro soltar el rol de ejecutor.', tags: ['liderazgo','velar','aletheia'] },
+    { id: 'sv4', text: 'No sé cómo darle feedback a mi jefe sin que me cueste caro.', tags: ['comunicacion','velar'] },
+    { id: 'sv5', text: 'El equipo no me reconoce como líder, me ven como uno más que ascendió.', tags: ['liderazgo','velar','aletheia'] },
+    { id: 'sv6', text: 'No sé cómo motivar al equipo cuando no puedo ofrecerles más dinero.', tags: ['motivacion','velar','aletheia'] },
+    { id: 'sv7', text: 'Cuando hay conflicto en el equipo no sé cómo manejarlo sin tomar partido.', tags: ['conflicto','velar'] },
+    { id: 'sv8', text: 'Lo urgente siempre gana, no tengo manera de priorizar lo que realmente importa.', tags: ['urgente','mccr','aletheia'] },
+    { id: 'sv9', text: 'Recibo instrucciones contradictorias desde arriba y no sé cómo gestionarlo con el equipo.', tags: ['comunicacion','velar','aletheia'] },
+    { id: 'sv10', text: 'Me cuesta soltar el rol de hacedor, sigo siendo el que más sabe hacer las cosas.', tags: ['liderazgo','velar','aletheia'] },
+    { id: 'sv11', text: 'El equipo cumple, pero sin entender el para qué, solo ejecuta órdenes.', tags: ['cultura','aletheia','velar'] },
+  ]
+};
+
+const PROGRAMAS_INFO = {
+  velar: {
+    nombre: 'VELAR®',
+    subtitulo: 'El líder deja de reaccionar. Empieza a responder.',
+    duracion: '8hs · 4 encuentros',
+    para: 'Líderes',
+    descripcion: 'VELAR® trabaja sobre el observador: cómo interpretás lo que pasa, cómo reaccionás bajo presión, cómo te vinculás genuinamente con tu equipo. No el líder que creés que sos, el que realmente estás siendo. Sin ese diagnóstico, cualquier cambio es superficial.',
+    precios: [
+      { label: '1 persona', value: 'USD 260' },
+      { label: '2 personas c/u', value: 'USD 230' },
+      { label: '3+ personas c/u', value: 'USD 210' },
+    ]
+  },
+  aletheia: {
+    nombre: 'ALETHEIA®',
+    subtitulo: 'El equipo funciona diferente. Los resultados generan impacto.',
+    duracion: '18hs · 9 encuentros',
+    para: 'Líderes',
+    descripcion: '11 herramientas con base científica, una por sesión. Para que el líder deje de reaccionar y empiece a intervenir con precisión: cómo gestiona la presión antes de transmitirla, cómo lee lo que el equipo no dice, cómo abre conversaciones difíciles, cómo conduce el cambio sin que se diluya.',
+    precios: [
+      { label: '1 persona', value: 'USD 540' },
+      { label: '2 personas c/u', value: 'USD 480' },
+      { label: '3+ personas c/u', value: 'USD 440' },
+    ]
+  },
+  mccr: {
+    nombre: 'MCCR®',
+    subtitulo: 'Indicadores reales. OKRs que impulsan. Resultados que se ven.',
+    duracion: '6–8hs · 3–4 encuentros',
+    para: 'Líderes & Equipos',
+    descripcion: 'El error más común no es no medir. Es medir lo que no importa. MCCR® cierra la brecha entre los indicadores vacíos y los resultados con impacto real. Los líderes construyen sus propios indicadores de contexto y OKRs alineados con la estrategia real de la organización.',
+    precios: [
+      { label: '1 persona', value: 'USD 290' },
+      { label: '2 personas c/u', value: 'USD 255' },
+      { label: '3+ personas c/u', value: 'USD 235' },
+    ]
+  },
+  okr: {
+    nombre: 'OKR · Formación Intensiva',
+    subtitulo: 'Aprendés a construir OKRs reales, no solo a conocer la metodología.',
+    duracion: '6hs · 2 encuentros',
+    para: 'Líderes & Equipos',
+    descripcion: 'Formación intensiva donde aprendés a construir Objetivos y Resultados Clave que conectan el trabajo diario con la estrategia real de la organización. No es una introducción teórica, es construcción real con herramientas aplicables desde el día siguiente. (Existe también una versión básica de introducción a OKR a USD 50.)',
+    precios: [
+      { label: '1 persona', value: 'USD 150' },
+      { label: '2 personas c/u', value: 'USD 135' },
+      { label: '3+ personas c/u', value: 'USD 120' },
+    ]
+  },
+  sinFiltro: {
+    nombre: 'Sin Filtro pero con Estrategia',
+    subtitulo: 'Comunicación directa, conversaciones difíciles, impacto real.',
+    duracion: 'Workshop intensivo',
+    para: 'Individual o equipo',
+    descripcion: 'Para quienes tienen conversaciones pendientes, feedback que nunca sale bien o conflictos que se evitan en lugar de resolverse. 4 bloques con herramientas concretas: Chaleco Antibalas, Contrato de Disenso, Detector de Subtexto y Script de Intervención Rápida.',
+    precios: [
+      { label: 'Inversión', value: 'USD 50' },
+    ],
+    tally: true
+  },
+  foundation: {
+    nombre: 'Foundation Workshop · Management 3.0',
+    subtitulo: 'Certificación oficial. Liderazgo ágil moderno.',
+    duracion: '16–20hs · 8 encuentros',
+    para: 'Líderes & Equipos',
+    descripcion: 'Certificación oficial Management 3.0. Virtual o presencial (Argentina). Se puede contratar solo o como complemento de cualquier programa. Herramientas concretas de liderazgo ágil que el equipo puede aplicar desde el día siguiente.',
+    precios: [
+      { label: '1 persona', value: 'USD 405' },
+      { label: '2 personas c/u', value: 'USD 360' },
+      { label: '3+ personas c/u', value: 'USD 330' },
+    ]
+  }
+};
+
+const COMBOS = {
+  aletheia_mccr: {
+    nombre: 'ALETHEIA® + MCCR®',
+    tag: '10% descuento',
+    desc: 'El recorrido completo para líderes: desarrollo profundo de liderazgo y medición estratégica con impacto real.',
+    precios: [
+      { label: '1 persona', value: 'USD 747' },
+      { label: '2 personas c/u', value: 'USD 663' },
+      { label: '3+ personas c/u', value: 'USD 607' },
+    ]
+  },
+  velar_aletheia_mccr: {
+    nombre: 'VELAR® + ALETHEIA® + MCCR®',
+    tag: '15% descuento',
+    desc: 'El recorrido integral: desde el autoconocimiento hasta la medición estratégica. El programa más completo.',
+    precios: [
+      { label: '1 persona', value: 'USD 926' },
+      { label: '2 personas c/u', value: 'USD 822' },
+      { label: '3+ personas c/u', value: 'USD 752' },
+    ]
+  }
+};
+
+// LOGIC
+const PROGRAMA_SCORES = {
+  velar: ['liderazgo','comunicacion','conflicto','motivacion','feedback','influencia','rol','autoridad','cultura','stakeholders'],
+  aletheia: ['sistemico','cultura','cambio','organizacion','autonomia','liderazgo','alineacion','accountability','proceso'],
+  mccr: ['metricas','urgente','estrategia','scope','priorizacion','resultados','backlog','valor'],
+  okr: ['okr','alineacion','priorizacion','vision'],
+  sinFiltro: ['comunicacion','conflicto','feedback'],
+  foundation: ['proceso','rol','cambio']
+};
+
+let selectedRol = null;
+let selectedProblemas = new Set();
+
+function selectRol(el, rol) {
+  document.querySelectorAll('.rol-card').forEach(c => c.classList.remove('selected'));
+  el.classList.add('selected');
+  selectedRol = rol;
+  document.getElementById('btn-next-1').disabled = false;
+}
+
+function goToStep2() {
+  selectedProblemas.clear();
+  renderProblemas();
+  goToStep(2);
+}
+
+function renderProblemas() {
+  const container = document.getElementById('problemas-container');
+  const items = PROBLEMAS[selectedRol] || [];
+  container.innerHTML = items.map(p => `
+    <div class="problema-item" id="prob-${p.id}" onclick="toggleProblema('${p.id}')">
+      <div class="problema-check" id="check-${p.id}"></div>
+      <div class="problema-text">${p.text}</div>
+    </div>
+  `).join('');
+  updateCount();
+}
+
+function toggleProblema(id) {
+  if (selectedProblemas.has(id)) {
+    selectedProblemas.delete(id);
+    document.getElementById('prob-' + id).classList.remove('selected');
+    document.getElementById('check-' + id).innerHTML = '';
+  } else {
+    selectedProblemas.add(id);
+    document.getElementById('prob-' + id).classList.add('selected');
+    document.getElementById('check-' + id).innerHTML = '✓';
+  }
+  updateCount();
+}
+
+function updateCount() {
+  const n = selectedProblemas.size;
+  const display = document.getElementById('count-display');
+  const btn = document.getElementById('btn-next-2');
+  if (n === 0) {
+    display.innerHTML = '';
+    btn.disabled = true;
+  } else {
+    display.innerHTML = `<strong>${n}</strong> seleccionada${n > 1 ? 's' : ''}`;
+    btn.disabled = false;
+  }
+}
+
+function calcularRecomendaciones() {
+  const scores = { velar: 0, aletheia: 0, mccr: 0, okr: 0, sinFiltro: 0, foundation: 0 };
+  const items = PROBLEMAS[selectedRol] || [];
+
+  selectedProblemas.forEach(id => {
+    const item = items.find(p => p.id === id);
+    if (!item) return;
+    item.tags.forEach(tag => {
+      Object.entries(PROGRAMA_SCORES).forEach(([prog, tags]) => {
+        if (tags.includes(tag)) scores[prog]++;
+      });
+    });
+  });
+
+  // Sort by score, keep top relevant
+  const sorted = Object.entries(scores)
+    .filter(([, v]) => v > 0)
+    .sort(([, a], [, b]) => b - a);
+
+  // Primary = top scorer; secondary = next if relevant
+  const primary = sorted[0]?.[0];
+  const secondary = sorted[1]?.[1] >= 2 ? sorted[1]?.[0] : null;
+  const tertiary = sorted[2]?.[1] >= 2 ? sorted[2]?.[0] : null;
+
+  return { primary, secondary, tertiary, scores };
+}
+
+function buildProgramaCard(key, isPrimary) {
+  const p = PROGRAMAS_INFO[key];
+  if (!p) return '';
+
+  const badge = isPrimary
+    ? `<div class="programa-badge">Recomendación principal</div>`
+    : `<div class="programa-badge" style="background:var(--gray-text)">Complementario</div>`;
+
+  const precios = p.precios.map(pr => `
+    <div class="precio-item">
+      <div class="precio-label">${pr.label}</div>
+      <div class="precio-value">${pr.value}</div>
+    </div>
+  `).join('');
+
+  const btnExtra = p.tally
+    ? `<a href="https://tally.so" target="_blank" class="btn-whatsapp" style="background:var(--blue-mid);box-shadow:0 4px 14px rgba(45,95,166,0.3);margin-top:12px;display:inline-flex;">Inscribirme al workshop →</a>`
+    : '';
+
+  return `
+    <div class="programa-card">
+      <div class="programa-card-header">
+        <div>
+          <div class="programa-name">${p.nombre}</div>
+          <div class="programa-meta">
+            <span>⏱ ${p.duracion}</span>
+            <span>👥 ${p.para}</span>
+          </div>
+        </div>
+        ${badge}
+      </div>
+      <div class="programa-card-body">
+        <p class="programa-why"><strong>${p.subtitulo}</strong><br><br>${p.descripcion}</p>
+        <div class="precios-title">Inversión (precios en USD)</div>
+        <div style="font-size:13px;color:var(--blue-mid);margin-bottom:10px;">💳 Si estás en Argentina, podés pagar en cuotas en pesos.</div>
+        <div class="precios-grid">${precios}</div>
+        ${btnExtra}
+      </div>
+    </div>
+  `;
+}
+
+function buildComboSugerido(primary, secondary, tertiary) {
+  const progs = [primary, secondary, tertiary].filter(Boolean);
+  const has = (p) => progs.includes(p);
+
+  let comboKey = null;
+  if (has('velar') && has('aletheia') && has('mccr')) comboKey = 'velar_aletheia_mccr';
+  else if (has('aletheia') && has('mccr')) comboKey = 'aletheia_mccr';
+  else if (has('velar') && has('aletheia')) comboKey = null; // solo 2 programas, no hay combo definido aún
+  else if (has('velar') && has('mccr')) comboKey = null;
+
+  if (!comboKey) return '';
+  return buildComboCard(comboKey);
+}
+
+function buildComboCard(key) {
+  const c = COMBOS[key];
+  const precios = c.precios.map(pr => `
+    <div class="combo-precio">
+      <div class="combo-precio-label">${pr.label}</div>
+      <div class="combo-precio-value">${pr.value}</div>
+    </div>
+  `).join('');
+
+  return `
+    <div style="margin-top:8px;">
+      <p style="font-size:14px;color:var(--gray-text);margin-bottom:12px;font-style:italic;">También podés combinar programas con descuento:</p>
+      <div class="combo-card">
+        <div class="combo-tag">${c.tag}</div>
+        <div class="combo-name">${c.nombre}</div>
+        <div class="combo-desc">${c.desc}</div>
+        <div class="combo-precios">${precios}</div>
+        <p style="font-size:12px;opacity:0.7;margin-top:14px;">Podés tomar cada programa por separado o aprovechar esta promoción si querés hacer el recorrido completo.</p>
+      </div>
+    </div>
+  `;
+}
+
+function getNombre() {
+  const nombres = {
+    sm: 'Scrum Master', po: 'Product Owner', pm: 'Project Manager',
+    coach: 'Agile Coach', lider: 'Líder / Manager', supervisor: 'Supervisor'
+  };
+  return nombres[selectedRol] || selectedRol;
+}
+
+function getInsight(primary, secondary, tertiary) {
+  const progs = [primary, secondary, tertiary].filter(Boolean);
+  const has = (p) => progs.includes(p);
+
+  // Sin Filtro solo
+  if (progs.length === 1 && has('sinFiltro')) {
+    return 'Lo que marcaste tiene nombre: hay conversaciones que no están funcionando. A veces parece que el problema es el otro, que no escucha, que no hace caso, que no entiende. Y puede ser. Pero muchas veces la conversación que creemos que estamos teniendo no es la que el otro está recibiendo. Eso no es un problema de personalidad ni de voluntad. Es falta de herramientas para decir lo que hay que decir, y que el otro lo interprete exactamente como necesitamos que lo interprete.';
+  }
+  // Solo VELAR
+  if (progs.length === 1 && has('velar')) {
+    return 'Lo que aparece en lo que marcaste tiene que ver con cómo te relacionás con las personas que te rodean en el trabajo. Cómo comunicás, cómo te perciben, cómo manejás lo que pasa antes de que explote. Eso no se resuelve con más información ni con otra metodología. Se resuelve trabajando sobre el observador que sos.';
+  }
+  // Solo ALETHEIA
+  if (progs.length === 1 && has('aletheia')) {
+    return 'Lo que describís no es un problema de conocimiento. Sabés lo que hay que hacer, pero algo en el sistema no termina de funcionar. Los patrones se repiten, los cambios no se sostienen, el equipo responde diferente a lo que esperás. Eso tiene una causa, y se puede intervenir con precisión.';
+  }
+  // Solo MCCR
+  if (progs.length === 1 && has('mccr')) {
+    return 'Lo que marcaste tiene un denominador común: hacen cosas, pero no está claro si esas cosas importan. Medir por medir no sirve. Lo que necesitás es un sistema que conecte el trabajo del día a día con lo que la organización realmente necesita lograr.';
+  }
+  // Solo OKR
+  if (progs.length === 1 && has('okr')) {
+    return 'Lo que describís muestra un equipo que trabaja sin una dirección compartida. Cada uno entiende las prioridades a su manera, y eso genera fricción, reprocesos y esfuerzo que no se traduce en resultados. Los OKRs bien construidos resuelven exactamente eso.';
+  }
+  // VELAR + ALETHEIA
+  if (has('velar') && has('aletheia') && !has('mccr')) {
+    return 'Lo que describís tiene dos dimensiones. Una es cómo te vinculás con el equipo: cómo te perciben, cómo comunicás, cómo influís sin necesitar autoridad formal. La otra es más profunda: los patrones que se repiten, los cambios que no se sostienen, el sistema que sigue funcionando igual aunque vos quieras que sea diferente. Las dos se trabajan juntas, y una potencia a la otra.';
+  }
+  // ALETHEIA + MCCR
+  if (has('aletheia') && has('mccr') && !has('velar')) {
+    return 'Lo que marcaste muestra dos problemas que suelen ir juntos. Por un lado, algo en el liderazgo o en la dinámica del equipo que no termina de funcionar. Por el otro, una desconexión entre lo que hacen y los resultados que la organización necesita ver. Trabajar solo uno sin el otro da resultados parciales.';
+  }
+  // VELAR + MCCR
+  if (has('velar') && has('mccr') && !has('aletheia')) {
+    return 'Lo que describís combina dos cosas que raramente se trabajan juntas. Cómo te relacionás y comunicás con las personas, y cómo medís si lo que están haciendo realmente importa. Son dos palancas distintas, pero cuando se mueven al mismo tiempo el cambio se siente en el equipo y en los números.';
+  }
+  // VELAR + ALETHEIA + MCCR
+  if (has('velar') && has('aletheia') && has('mccr')) {
+    return 'Lo que marcaste cubre bastante terreno. Hay algo en cómo te relacionás con el equipo, algo en los patrones que se repiten aunque intentés cambiarlos, y algo en la desconexión entre el esfuerzo y los resultados reales. No es un diagnóstico simple, pero tampoco es un problema sin solución. Hay un recorrido claro para trabajar todo esto de forma integrada.';
+  }
+  // Cualquier combinación con OKR
+  if (has('okr') && progs.length > 1) {
+    return 'Lo que describís muestra un equipo que necesita dos cosas a la vez: trabajar algunos patrones internos, y encontrar una dirección más clara que conecte el trabajo diario con lo que la organización realmente necesita lograr.';
+  }
+  return 'En base a lo que marcaste, estas son las formaciones que mejor se adaptan a tu contexto.';
+}
+
+function goToStep3() {
+  const { primary, secondary, tertiary, scores } = calcularRecomendaciones();
+  const container = document.getElementById('resultado-container');
+
+  const insight = getInsight(primary, secondary, tertiary);
+
+  let programasHTML = buildProgramaCard(primary, true);
+  if (secondary && secondary !== primary) programasHTML += buildProgramaCard(secondary, false);
+  if (tertiary && tertiary !== primary && tertiary !== secondary) programasHTML += buildProgramaCard(tertiary, false);
+
+  const comboHTML = buildComboSugerido(primary, secondary, tertiary);
+
+  container.innerHTML = `
+    <div class="insight-block">
+      <p>${insight}</p>
+    </div>
+    <div class="programas-list">
+      ${programasHTML}
+      ${comboHTML ? `<div>${comboHTML}</div>` : ''}
+    </div>
+    <div class="cta-section">
+      <h4>¿Te identificaste? Hablemos.</h4>
+      <p>Contanos tu situación. Sin presentaciones, sin compromiso.</p>
+      <div class="cta-buttons">
+        <a href="https://wa.me/message/OY2XJPLGZKXMJ1" target="_blank" class="btn-whatsapp">
+          <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+          Hablar por WhatsApp
+        </a>
+      </div>
+    </div>
+  `;
+
+  goToStep(3);
+}
+
+function goToStep(n) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.getElementById('step' + n).classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  // Update steps bar
+  for (let i = 1; i <= 3; i++) {
+    const ind = document.getElementById('step' + i + '-indicator');
+    ind.classList.remove('active', 'done');
+    if (i < n) ind.classList.add('done');
+    else if (i === n) ind.classList.add('active');
+  }
+
+  // Update done checkmarks
+  document.querySelectorAll('.step-item.done .step-num').forEach(el => {
+    if (!el.innerHTML.includes('✓')) el.innerHTML = '✓';
+  });
+}
+
+function restart() {
+  selectedRol = null;
+  selectedProblemas.clear();
+  document.querySelectorAll('.rol-card').forEach(c => c.classList.remove('selected'));
+  document.getElementById('btn-next-1').disabled = true;
+  goToStep(1);
+}
+
+
+// ===== RECURSOS POR ROL =====
+const RECURSOS = {
+  sm: `<div class="recurso-wrapper">
+
+  <!-- ENCABEZADO -->
+  <div class="recurso-header">
+    <div class="recurso-label">Tu recurso gratuito · Scrum Master</div>
+    <div class="recurso-titulo">Por qué tu equipo no avanza aunque hagas todo bien</div>
+    <div class="recurso-subtitulo">5 dimensiones para diagnosticar lo que el proceso no te está mostrando</div>
+  </div>
+
+  <!-- DIMENSIONES ACORDEÓN -->
+  <div class="dimensiones-container">
+
+    <!-- D1 -->
+    <div class="dimension-item" id="d1">
+      <div class="dimension-header" onclick="toggleDim('d1')">
+        <div class="dimension-header-left">
+          <div class="dimension-num">1</div>
+          <div class="dimension-nombre">Compromisos que no se cumplen</div>
+        </div>
+        <svg class="dimension-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </div>
+      <div class="dimension-body">
+        <div class="dimension-intro">
+          La investigación en equipos ágiles es consistente: menos de la mitad de los compromisos que salen de una retro se cumplen. No porque el equipo no quiera mejorar. Sino porque lo que se anota al final de la retro no es un compromiso real. Es una intención colectiva sin dueño, sin criterio de éxito y sin forma de saber si ocurrió o no.<br><br>
+          La diferencia entre una intención y un compromiso es específica y medible. Y casi ninguna retro cierra con esa diferencia resuelta.
+        </div>
+        <div class="practica-box">
+          <div class="practica-label">Para tu próxima retro</div>
+          <div class="practica-texto">
+            <p>Antes de cerrar, pasá cada compromiso por estas tres preguntas en voz alta con el equipo:</p>
+            <p><em>¿Quién?</em> Una persona, no "el equipo". Cuando todos son responsables, nadie lo es.</p>
+            <p><em>¿Qué exactamente?</em> No "mejorar la comunicación". Una acción concreta que alguien pueda ver que ocurrió o no ocurrió.</p>
+            <p><em>¿Cómo sabemos que pasó?</em> No en la próxima retro. En algún momento antes de que se olvide.</p>
+            <p>Si alguna no tiene respuesta clara, el compromiso no está listo. No lo anotes. Reformulálo hasta que las tres tengan respuesta.</p>
+            <p>Va a incomodar la primera vez. Esa incomodidad es la señal de que estás tocando algo real.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- D2 -->
+    <div class="dimension-item" id="d2">
+      <div class="dimension-header" onclick="toggleDim('d2')">
+        <div class="dimension-header-left">
+          <div class="dimension-num">2</div>
+          <div class="dimension-nombre">El equipo que no se mueve solo</div>
+        </div>
+        <svg class="dimension-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </div>
+      <div class="dimension-body">
+        <div class="dimension-intro">
+          Hay un fenómeno que la psicología organizacional lleva décadas estudiando y que ningún curso de Scrum enseña: cuando un equipo recibe ayuda sistemáticamente antes de tener la oportunidad de resolver por sí mismo, aprende que sus acciones no cambian el resultado. Y deja de intentarlo.<br><br>
+          No es desidia. Es un patrón instalado. Y en la mayoría de los casos, lo instaló el SM con la mejor intención.
+        </div>
+        <div class="practica-box">
+          <div class="practica-label">Un cambio concreto para esta semana</div>
+          <div class="practica-texto">
+            <p>En la próxima daily, no hablés primero. No facilites con preguntas. Abrís el espacio y esperás.</p>
+            <p>Si nadie habla en los primeros 15 segundos, no llenés ese silencio. El silencio incómodo es el momento exacto donde el equipo decide si espera que vos resuelvas o si alguien se mueve.</p>
+            <p>La primera vez va a ser incómodo para todos. Para vos más que para ellos, porque tu instinto va a ser ayudar. Resistí ese instinto.</p>
+            <p>Lo que observás después, quién habló primero, qué dijo, si nombró un impedimento o esperó que vos lo hicieras. Eso te dice en qué nivel de autonomía está el equipo hoy.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- D3 -->
+    <div class="dimension-item" id="d3">
+      <div class="dimension-header" onclick="toggleDim('d3')">
+        <div class="dimension-header-left">
+          <div class="dimension-num">3</div>
+          <div class="dimension-nombre">La tensión que todos sienten y nadie nombra</div>
+        </div>
+        <svg class="dimension-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </div>
+      <div class="dimension-body">
+        <div class="dimension-intro">
+          La investigación sobre comportamiento en equipos confirma algo que incomoda: el 85% de las personas retiene información importante porque calculó que hablar tiene más costo que callarse. No es falta de confianza en abstracto. Es un cálculo racional basado en lo que vieron que pasó la última vez.<br><br>
+          En un equipo con tensión no nombrada, ese cálculo ya ocurrió. La pregunta no es si el equipo tiene confianza. Es qué evidencia tiene de que acá se puede decir algo difícil sin consecuencias.<br><br>
+          El SM no genera ese miedo con castigos. Lo genera de otra forma: siendo tan neutral, tan facilitador, tan cuidadoso de no tomar partido, que el equipo aprende que en ese espacio las cosas difíciles tampoco se dicen.
+        </div>
+        <div class="practica-box">
+          <div class="practica-label">Una práctica concreta para esta semana</div>
+          <div class="practica-texto">
+            <p>Elegí algo real que a vos te incomoda del equipo o de la situación actual. Algo verdadero, no pedagógico. Y nombralo en voz alta en la próxima instancia grupal.</p>
+            <p>No como pregunta. Como observación directa en primera persona: <em>"Noto que hay algo que no estamos diciendo. Yo lo voy a decir."</em></p>
+            <p>Lo que pasa después de esa frase no lo podés controlar. Lo que sí controlás es si el equipo aprende que en ese espacio se puede hablar o que tampoco ahí se puede.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- D4 -->
+    <div class="dimension-item" id="d4">
+      <div class="dimension-header" onclick="toggleDim('d4')">
+        <div class="dimension-header-left">
+          <div class="dimension-num">4</div>
+          <div class="dimension-nombre">El equipo entrega, pero nadie siente que avanzó</div>
+        </div>
+        <svg class="dimension-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </div>
+      <div class="dimension-body">
+        <div class="dimension-intro">
+          Hay una trampa que la investigación en equipos ágiles lleva años documentando: velocity no mide valor. Mide cuánto trabajo completó el equipo. Son cosas distintas.<br><br>
+          Un equipo puede tener velocity alta, burndown prolijo y ceremonias perfectas, y aun así no poder responder esta pregunta: ¿qué cambió para el negocio o para el usuario por lo que entregamos este sprint?<br><br>
+          Cuando esa pregunta no tiene respuesta, el equipo no está fallando en el proceso. Está midiendo la cosa equivocada.
+        </div>
+        <div class="practica-box">
+          <div class="practica-label">Una práctica concreta para esta semana</div>
+          <div class="practica-texto">
+            <p>Al final del próximo sprint, antes de la review, escribí la respuesta a esta pregunta:</p>
+            <p><em>¿Qué es diferente ahora para quien recibe lo que entregamos?</em></p>
+            <p>No en términos de funcionalidades. En términos de impacto real.</p>
+            <p>Si no podés responderla, no es un problema de la review. Es una señal de que el equipo no tiene una métrica de valor todavía. Construirla es el trabajo que sigue.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- D5 -->
+    <div class="dimension-item" id="d5">
+      <div class="dimension-header" onclick="toggleDim('d5')">
+        <div class="dimension-header-left">
+          <div class="dimension-num">5</div>
+          <div class="dimension-nombre">La organización que pide agilidad pero no cambia nada</div>
+        </div>
+        <svg class="dimension-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </div>
+      <div class="dimension-body">
+        <div class="dimension-intro">
+          El 47% de las transformaciones ágiles falla por resistencia al cambio, y esa resistencia no viene del equipo. Viene de una capa de la organización con suficiente poder para frenar lo que sube desde abajo, y suficiente distancia de la dirección para ignorar lo que baja desde arriba.<br><br>
+          El SM que sigue trabajando con el equipo cuando el problema ya está en esa capa está resolviendo en el lugar equivocado. El equipo puede ser excelente. Si la organización por encima no cambia las condiciones, el equipo va a seguir adaptándose a un sistema que no fue diseñado para funcionar de otra manera.
+        </div>
+        <div class="practica-box">
+          <div class="practica-label">Una práctica concreta para esta semana</div>
+          <div class="practica-texto">
+            <p>Identificá a la persona específica que tiene el poder real de cambiar la condición que más frena a tu equipo hoy. No el enunciado general de "la organización". Una persona, con nombre y apellido.</p>
+            <p>Después hacete esta pregunta: <em>¿qué está perdiendo esa persona si las cosas cambian?</em> No qué gana el equipo. Qué pierde ella.</p>
+            <p>Si no podés responder esa pregunta, todavía no estás listo para tener esa conversación. Pero ya sabés cuál es el trabajo que sigue.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- fin dimensiones -->
+
+</div><!-- fin wrapper -->`,
+  po: `<div class="recurso-wrapper">
+
+  <!-- ENCABEZADO -->
+  <div class="recurso-header">
+    <div class="recurso-label">Tu recurso gratuito · Product Owner</div>
+    <div class="recurso-titulo">Lo que el backlog no te muestra aunque el equipo entregue</div>
+    <div class="recurso-subtitulo">5 dimensiones para diagnosticar cómo estás liderando el producto</div>
+  </div>
+
+  <!-- DIMENSIONES -->
+  <div class="dimensiones-container">
+
+    <!-- D1 -->
+    <div class="dimension-item" id="d1">
+      <div class="dimension-header" onclick="toggleDim('d1')">
+        <div class="dimension-header-left">
+          <div class="dimension-num">1</div>
+          <div class="dimension-nombre">Todo es urgente porque nadie definió qué genera valor</div>
+        </div>
+        <svg class="dimension-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </div>
+      <div class="dimension-body">
+        <div class="dimension-intro">
+          Sin un objetivo claro de valor, lo urgente siempre gana. No porque el PO no sepa priorizar. Sino porque sin un norte definido, cualquier pedido que llega con presión parece tan válido como el anterior.<br><br>
+          La investigación lo confirma: cuando el PO no tiene definido qué es importante, el equipo termina corriendo de crisis en crisis sin avanzar hacia nada que realmente importe.
+        </div>
+        <div class="practica-box">
+          <div class="practica-label">Una práctica concreta para esta semana</div>
+          <div class="practica-texto">
+            <p>Escribí en una sola frase qué tiene que ser diferente en 30 días para que puedas decir que el producto generó valor real. No una lista de entregables. No un objetivo de velocidad. Una sola frase que responda esto: <em>¿en qué debería trabajar el equipo en los próximos sprints que resuelva un problema concreto del cliente y genere un impacto observable en su experiencia?</em></p>
+            <p>Si no podés escribir esa frase, no es un problema de backlog. Es que todavía no tuviste la conversación con el negocio que te permita tenerla. Esa conversación es la que tenés que ir a buscar.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- D2 -->
+    <div class="dimension-item" id="d2">
+      <div class="dimension-header" onclick="toggleDim('d2')">
+        <div class="dimension-header-left">
+          <div class="dimension-num">2</div>
+          <div class="dimension-nombre">El backlog que no te pertenece</div>
+        </div>
+        <svg class="dimension-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </div>
+      <div class="dimension-body">
+        <div class="dimension-intro">
+          El PO tiene autoridad formal sobre el backlog. En la práctica, esa autoridad se negocia todos los días.<br><br>
+          Cada pedido de stakeholder que entra sin cuestionarse va convirtiendo el backlog en una lista de requests. El PO deja de decidir qué genera valor y pasa a administrar lo que otros decidieron que es importante. Cuando eso pasa, la priorización es una ficción educada.
+        </div>
+        <div class="practica-box">
+          <div class="practica-label">Una práctica concreta para esta semana</div>
+          <div class="practica-texto">
+            <p>Revisá los últimos cinco ítems que entraron al backlog. Para cada uno respondé estas dos preguntas: ¿quién lo pidió? ¿Qué problema del cliente resuelve?</p>
+            <p>Si la respuesta a la segunda pregunta es vaga o no existe, ese ítem entró por presión, no por valor. No es un error puntual. Es una señal de cómo está funcionando tu autoridad sobre el producto hoy.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- D3 -->
+    <div class="dimension-item" id="d3">
+      <div class="dimension-header" onclick="toggleDim('d3')">
+        <div class="dimension-header-left">
+          <div class="dimension-num">3</div>
+          <div class="dimension-nombre">Decisiones que se toman sin datos reales</div>
+        </div>
+        <svg class="dimension-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </div>
+      <div class="dimension-body">
+        <div class="dimension-intro">
+          El PO toma decisiones todos los días sobre qué construir. La mayoría se toman sin información real del usuario ni del negocio. No porque el PO no quiera tenerla, sino porque la organización no se la traslada y el PO no tiene un sistema propio para conseguirla.<br><br>
+          En ese vacío, las decisiones las termina tomando el stakeholder que llega con más presión. El PO administra opiniones en lugar de evidencia. Y cuando alguien le pregunta por qué priorizó algo, la respuesta real es "porque me lo pidieron".
+        </div>
+        <div class="practica-box">
+          <div class="practica-label">Una práctica concreta para esta semana</div>
+          <div class="practica-texto">
+            <p>Elegí el ítem más importante que tiene tu backlog hoy. El que está primero. Y respondé estas dos preguntas:</p>
+            <p><em>¿Qué evidencia concreta tenés de que ese ítem resuelve un problema real del cliente?</em> No lo que alguien opinó en una reunión. No lo que el stakeholder asume que el cliente necesita. Una evidencia real: algo que se testeó, algo que se midió, algo que produjo un resultado observable y que muestra que ese problema existe y que vale la pena resolverlo.</p>
+            <p><em>¿Qué evidencia tenés de que resolver ese problema impacta en algo que el negocio mide hoy?</em></p>
+            <p>Si alguna de las dos no tiene respuesta, ese ítem está primero por razones que no son de valor. Por presión, por jerarquía, por urgencia percibida. Eso no significa sacarlo automáticamente. Significa que como PO estás tomando una decisión sin criterio propio, y que la próxima vez que alguien te cuestione esa prioridad, no vas a tener con qué responder.</p>
+            <p>Construir ese criterio, con datos reales y no con opiniones, es lo que separa al PO que administra pedidos del PO que lidera el producto.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- D4 -->
+    <div class="dimension-item" id="d4">
+      <div class="dimension-header" onclick="toggleDim('d4')">
+        <div class="dimension-header-left">
+          <div class="dimension-num">4</div>
+          <div class="dimension-nombre">Quién sos cuando llega la presión</div>
+        </div>
+        <svg class="dimension-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </div>
+      <div class="dimension-body">
+        <div class="dimension-intro">
+          Hay una versión del PO que tiene criterio y visión. Y hay otra que aparece cuando alguien con jerarquía llega con un pedido urgente: más pequeña, más dispuesta a ceder, más ocupada en no generar conflicto.<br><br>
+          Esa segunda versión no aparece por falta de habilidad. Aparece por miedo. Y ese miedo, cuando no se nombra, toma decisiones por el PO sin que el PO lo note.
+        </div>
+        <div class="practica-box">
+          <div class="practica-label">Una práctica concreta para esta semana</div>
+          <div class="practica-texto">
+            <p>Pensá en la última vez que aceptaste algo que no deberías haber aceptado. No lo analices desde el backlog. Analizalo desde vos.</p>
+            <p><em>¿Desde qué lugar tomaste esa decisión?</em> ¿Desde tu criterio sobre lo que genera valor, o desde el miedo a lo que pasaría si decías que no?</p>
+            <p>Esa distinción, entre decidir y ceder, es la diferencia entre liderar el producto y administrarlo.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- D5 -->
+    <div class="dimension-item" id="d5">
+      <div class="dimension-header" onclick="toggleDim('d5')">
+        <div class="dimension-header-left">
+          <div class="dimension-num">5</div>
+          <div class="dimension-nombre">Entregás pero no sabés si generaste valor</div>
+        </div>
+        <svg class="dimension-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </div>
+      <div class="dimension-body">
+        <div class="dimension-intro">
+          Entregar es completar algo. Generar valor es que ese algo produjo un cambio observable en la experiencia del cliente o en un resultado concreto del negocio. Son cosas distintas.<br><br>
+          El PO que no tiene una métrica propia de valor no puede demostrar ni defender su trabajo. Cuando el negocio le pregunta qué impacto tuvo lo que priorizó, no tiene con qué responder.
+        </div>
+        <div class="practica-box">
+          <div class="practica-label">Tres preguntas para reflexionar esta semana</div>
+          <div class="practica-texto">
+            <p><em>¿Qué cambió para el cliente desde que el equipo entregó lo último que priorizaste?</em> No si se entregó. No si quedó bien hecho. ¿Qué cambió para quien lo recibe?</p>
+            <p><em>¿Cómo sabrías si lo que entregaste generó impacto real?</em> ¿Tenés una forma de medirlo o solo tenés la sensación de que fue útil?</p>
+            <p><em>¿Podés mostrarle al negocio, con algo concreto, que las decisiones que tomaste este trimestre produjeron un resultado que importa?</em></p>
+            <p>Si alguna de estas tres preguntas no tiene respuesta, no es un problema de entrega. Es que todavía no tenés tus propias métricas de valor. Construirlas es el trabajo que sigue.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- fin dimensiones -->
+
+</div><!-- fin wrapper -->`,
+  pm: `<div class="recurso-wrapper">
+
+  <div class="recurso-header">
+    <div class="recurso-label">Tu recurso gratuito · Project Manager</div>
+    <div class="recurso-titulo">Lo que el proyecto no te muestra aunque todo vaya bien</div>
+    <div class="recurso-subtitulo">5 dimensiones para diagnosticar lo que la gestión no te está mostrando</div>
+  </div>
+
+  <div class="dimensiones-container">
+
+    <!-- D1 -->
+    <div class="dimension-item" id="d1">
+      <div class="dimension-header" onclick="toggleDim('d1')">
+        <div class="dimension-header-left">
+          <div class="dimension-num">1</div>
+          <div class="dimension-nombre">El proyecto crece y lo dejás pasar</div>
+        </div>
+        <svg class="dimension-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </div>
+      <div class="dimension-body">
+        <div class="dimension-intro">
+          El 50% de los desvíos de presupuesto tienen origen en cambios de alcance no controlados. Y la mayoría no llegaron de golpe. Llegaron de a uno, pequeños, razonables, fáciles de aceptar.<br><br>
+          El PM los acepta para no generar conflicto, para no quedar como el que frena, para mantener la relación con el stakeholder que pide. Y cada vez que acepta sin cuestionar, le enseña a la organización que el alcance es negociable.
+        </div>
+        <div class="practica-box">
+          <div class="practica-label">Una práctica concreta para esta semana</div>
+          <div class="practica-texto">
+            <p>Revisá los últimos tres cambios que entraron al proyecto sin pasar por un proceso formal. Para cada uno respondé: ¿cuál fue el impacto real en tiempo o en recursos? ¿Lo documentaste? ¿Lo comunicaste?</p>
+            <p>Si la respuesta a las tres preguntas es no, el alcance de tu proyecto no lo controlás vos. Lo controlan quienes saben que pueden pedirte cosas sin consecuencias.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- D2 -->
+    <div class="dimension-item" id="d2">
+      <div class="dimension-header" onclick="toggleDim('d2')">
+        <div class="dimension-header-left">
+          <div class="dimension-num">2</div>
+          <div class="dimension-nombre">Todos colaboran pero nadie responde por el resultado</div>
+        </div>
+        <svg class="dimension-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </div>
+      <div class="dimension-body">
+        <div class="dimension-intro">
+          Hay una confusión que se instala silenciosamente en los proyectos: creer que trabajar juntos es lo mismo que ser responsables juntos. No lo es.<br><br>
+          La responsabilidad de hacer y la accountability sobre el resultado son cosas distintas. La primera se puede compartir. La segunda no. Cuando el PM no define quién responde por cada resultado, todos hicieron su parte pero nadie es responsable del todo.
+        </div>
+        <div class="practica-box">
+          <div class="practica-label">Una práctica concreta para esta semana</div>
+          <div class="practica-texto">
+            <p>Elegí el entregable más crítico del proyecto en este momento. No el equipo que lo produce. El resultado que tiene que existir.</p>
+            <p>Después respondé: si ese resultado no llega, ¿quién tiene que dar explicaciones? Si la respuesta es "el equipo" o "todos", todavía no tenés accountability definida. Tenés colaboración sin ownership.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- D3 -->
+    <div class="dimension-item" id="d3">
+      <div class="dimension-header" onclick="toggleDim('d3')">
+        <div class="dimension-header-left">
+          <div class="dimension-num">3</div>
+          <div class="dimension-nombre">La conversación que postergás impacta en el proyecto</div>
+        </div>
+        <svg class="dimension-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </div>
+      <div class="dimension-body">
+        <div class="dimension-intro">
+          La comunicación deficiente contribuye al fracaso del 56% de los proyectos. Y la mayoría de esas fallas no vienen de no comunicar el status. Vienen de no tener la conversación que incomoda: el riesgo que nadie quiere nombrar, el desvío que se ve venir pero no se dice, la persona que no está cumpliendo.<br><br>
+          Cada conversación postergada tiene un costo real. En tiempo, en recursos y en credibilidad. El PM que espera que el problema se resuelva solo generalmente descubre que el problema creció.
+        </div>
+        <div class="practica-box">
+          <div class="practica-label">Una práctica concreta para esta semana</div>
+          <div class="practica-texto">
+            <p>Identificá la conversación que estás postergando en este momento. No la más cómoda. La que sabés que tenés que tener y no tuviste.</p>
+            <p>Después respondé: ¿qué le está costando al proyecto cada día que esa conversación no ocurre? Si podés ponerle un número, aunque sea aproximado, ya tenés el argumento para tenerla esta semana.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- D4 -->
+    <div class="dimension-item" id="d4">
+      <div class="dimension-header" onclick="toggleDim('d4')">
+        <div class="dimension-header-left">
+          <div class="dimension-num">4</div>
+          <div class="dimension-nombre">Venías administrando procesos pero hoy te piden liderar personas</div>
+        </div>
+        <svg class="dimension-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </div>
+      <div class="dimension-body">
+        <div class="dimension-intro">
+          El PMI acaba de redefinir el rol. El nuevo estándar pone el liderazgo, la empatía y el impacto en las personas como principios centrales, no como soft skills adicionales. El PM que sigue operando desde la lógica del cronograma y el control de scope está respondiendo a un estándar que ya cambió.<br><br>
+          El gap no es de conocimiento. Es que nadie le enseñó a leer por qué el equipo está desconectado, ni a tener la conversación que retiene a alguien que está por irse.
+        </div>
+        <div class="practica-box">
+          <div class="practica-label">Una práctica concreta para esta semana</div>
+          <div class="practica-texto">
+            <p>Pensá en cada persona de tu equipo. Una por una.</p>
+            <p>¿Sabés qué la motiva realmente? ¿Sabés si está comprometida o solo cumpliendo? ¿Sabés si hay algo que la está frenando que vos podrías resolver?</p>
+            <p>Si no podés responder esas preguntas, no es un problema de gestión del proyecto. Es una señal de que todavía estás liderando el plan, no a las personas que lo ejecutan.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- D5 -->
+    <div class="dimension-item" id="d5">
+      <div class="dimension-header" onclick="toggleDim('d5')">
+        <div class="dimension-header-left">
+          <div class="dimension-num">5</div>
+          <div class="dimension-nombre">Operás en dos metodologías que tu equipo no sabe cómo leer</div>
+        </div>
+        <svg class="dimension-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </div>
+      <div class="dimension-body">
+        <div class="dimension-intro">
+          El uso de entornos híbridos creció un 57% en tres años. Hoy más de un tercio de los proyectos combina metodologías. El problema no es la metodología en sí. Es que el equipo opera con lógicas distintas sin que nadie las haya integrado.<br><br>
+          Una parte trabaja con sprints y backlog. Otra con cronograma e hitos. Las métricas no se leen igual. Y el PM que no define cómo conviven esos dos mundos termina con equipos que no se comunican entre sí y un proyecto que avanza en dos velocidades.
+        </div>
+        <div class="practica-box">
+          <div class="practica-label">Una práctica concreta para esta semana</div>
+          <div class="practica-texto">
+            <p>Mapeá cómo están trabajando las distintas partes de tu equipo hoy. ¿Quién opera en modo iterativo y quién en modo secuencial?</p>
+            <p>Después respondé: ¿existe algún punto de integración claro entre esas dos lógicas? ¿Saben todos cómo se toman las decisiones cuando chocan las prioridades de un lado con las del otro?</p>
+            <p>Si no hay una respuesta clara, el híbrido de tu proyecto no es una metodología. Es confusión con nombre.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+</div>`,
+  coach: `<div class="recurso-wrapper">
+
+  <div class="recurso-header">
+    <div class="recurso-label">Tu recurso gratuito · Agile Coach</div>
+    <div class="recurso-titulo">Trabajás el proceso pero algo en la organización sigue igual</div>
+    <div class="recurso-subtitulo">5 dimensiones para diagnosticar lo que el framework no te está mostrando</div>
+  </div>
+
+  <div class="dimensiones-container">
+
+    <!-- D1 -->
+    <div class="dimension-item" id="d1">
+      <div class="dimension-header" onclick="toggleDim('d1')">
+        <div class="dimension-header-left">
+          <div class="dimension-num">1</div>
+          <div class="dimension-nombre">Hacés el trabajo pero no podés mostrar el valor para que el negocio lo entienda</div>
+        </div>
+        <svg class="dimension-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </div>
+      <div class="dimension-body">
+        <div class="dimension-intro">
+          El cambio de mindset ocurre. Los equipos mejoran. Las conversaciones se vuelven más honestas. Pero cuando alguien del negocio pregunta qué impacto tuvo el Agile Coach, la respuesta suena vaga comparada con lo que cuesta el rol.<br><br>
+          El problema no es que el trabajo no tenga valor. Es que el Agile Coach no tiene sus propias métricas para mostrarlo en el lenguaje que el negocio usa. Y en 2026, con presión creciente sobre costos y resultados, esa incapacidad de demostrar valor en números concretos es lo que está poniendo el rol en riesgo.
+        </div>
+        <div class="practica-box">
+          <div class="practica-label">Una práctica concreta para esta semana</div>
+          <div class="practica-texto">
+            <p>Elegí un equipo con el que estás trabajando. Pensá en los últimos 60 días.</p>
+            <p>¿Qué cambió en ese equipo que el negocio pueda ver? No lo que sentís que mejoró. Algo observable y específico que alguien que no estuvo en las sesiones pueda confirmar.</p>
+            <p>Y la pregunta que sigue: ¿cómo podés cuantificar ese cambio? ¿Hay un número, una frecuencia, una comparación antes y después que lo haga tangible?</p>
+            <p>Si no podés responder esas preguntas, no es que el trabajo no tuvo impacto. Es que todavía no tenés una métrica para hacerlo visible. Construirla es el trabajo que sigue.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- D2 -->
+    <div class="dimension-item" id="d2">
+      <div class="dimension-header" onclick="toggleDim('d2')">
+        <div class="dimension-header-left">
+          <div class="dimension-num">2</div>
+          <div class="dimension-nombre">Trabajás con los equipos pero el problema está más arriba</div>
+        </div>
+        <svg class="dimension-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </div>
+      <div class="dimension-body">
+        <div class="dimension-intro">
+          La resistencia más fuerte a la transformación ágil no viene de los equipos. Viene de los mandos medios y del liderazgo que, sin decirlo explícitamente, teme perder control, visibilidad y relevancia.<br><br>
+          El Agile Coach que trabaja únicamente con los equipos está construyendo en un terreno que la organización por encima puede deshacer en cualquier momento.
+        </div>
+        <div class="practica-box">
+          <div class="practica-label">Una práctica concreta para esta semana</div>
+          <div class="practica-texto">
+            <p>Pensá en el principal obstáculo que tiene el equipo con el que más trabajás hoy. El impedimento real, no el técnico.</p>
+            <p>Después respondé: ¿ese obstáculo tiene raíz en cómo trabaja el equipo o en cómo decide o se comporta alguien por encima del equipo?</p>
+            <p>Si la respuesta es lo segundo, la pregunta que sigue es cuánto tiempo estás dedicando a trabajar con ese nivel de la organización versus cuánto estás dedicando a los equipos.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- D3 -->
+    <div class="dimension-item" id="d3">
+      <div class="dimension-header" onclick="toggleDim('d3')">
+        <div class="dimension-header-left">
+          <div class="dimension-num">3</div>
+          <div class="dimension-nombre">Ves el impedimento pero no podés resolverlo</div>
+        </div>
+        <svg class="dimension-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </div>
+      <div class="dimension-body">
+        <div class="dimension-intro">
+          El Agile Coach identifica lo que frena al equipo antes que nadie. El problema es que los impedimentos más costosos no tienen raíz en el equipo. Tienen raíz en procesos, estructuras y decisiones que están por encima de lo que el Agile Coach puede tocar.<br><br>
+          Puede visibilizarlo, documentarlo, escalarlo. Pero si no tiene la relación ni la estrategia para mover a quien tiene el poder de resolverlo, el impedimento se queda donde está. Y el equipo aprende que nombrar los problemas no sirve de nada.
+        </div>
+        <div class="practica-box">
+          <div class="practica-label">Una práctica concreta para esta semana</div>
+          <div class="practica-texto">
+            <p>Revisá tu backlog de impedimentos actual. Los que llevan más de dos semanas sin resolverse.</p>
+            <p>Para cada uno respondé: ¿quién tiene el poder real de resolverlo? ¿Cuántas veces lo escalaste? ¿Qué pasó cada vez?</p>
+            <p>Si el patrón es que escalaste y no pasó nada, el problema no es el impedimento. Es que todavía no tenés una estrategia para influir en quien puede resolverlo. Eso es diferente a facilitar. Y requiere herramientas distintas.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- D4 -->
+    <div class="dimension-item" id="d4">
+      <div class="dimension-header" onclick="toggleDim('d4')">
+        <div class="dimension-header-left">
+          <div class="dimension-num">4</div>
+          <div class="dimension-nombre">La organización quiere resultados esta semana y vos trabajás en meses</div>
+        </div>
+        <svg class="dimension-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </div>
+      <div class="dimension-body">
+        <div class="dimension-intro">
+          Los primeros resultados visibles de una transformación ágil pueden aparecer en semanas. Pero los cambios de mindset reales toman 18 meses. Y los cambios culturales profundos toman entre 3 y 5 años.<br><br>
+          El problema es que la organización que contrató al Agile Coach no leyó ese paper. Quiere ver resultados en semanas. Y cuando no los ve, empieza a cuestionar el rol. Sin una estrategia para gestionar esa brecha, el trabajo se hace más difícil y el rol más vulnerable.
+        </div>
+        <div class="practica-box">
+          <div class="practica-label">Una práctica concreta para esta semana</div>
+          <div class="practica-texto">
+            <p>Pensá en cómo estás comunicando tu trabajo hacia arriba hoy.</p>
+            <p>¿Estás mostrando el proceso de cambio o solo los resultados finales? ¿Hay algo pequeño y observable que puedas mostrar esta semana que demuestre que algo se está moviendo, aunque el cambio grande todavía no llegó?</p>
+            <p>La organización no necesita ver el resultado final para seguir invirtiendo. Necesita ver señales de que el camino va en la dirección correcta. Esa narrativa la tenés que construir vos.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- D5 -->
+    <div class="dimension-item" id="d5">
+      <div class="dimension-header" onclick="toggleDim('d5')">
+        <div class="dimension-header-left">
+          <div class="dimension-num">5</div>
+          <div class="dimension-nombre">Te formaron en frameworks pero hoy te piden coachear liderazgo</div>
+        </div>
+        <svg class="dimension-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </div>
+      <div class="dimension-body">
+        <div class="dimension-intro">
+          Las formaciones de Agile Coach incluyen coaching. Escucha activa, preguntas poderosas, dinámicas de equipo. Eso es real y valioso.<br><br>
+          El problema es que hay una brecha entre lo que esas herramientas permiten hacer y lo que la transformación real requiere. Un director que lleva años operando desde el control, que dice que apoya la agilidad pero toma decisiones que la contradicen, no es un problema de proceso ni de framework. Es un problema de liderazgo. Y ahí es donde la mayoría de los Agile Coaches se queda sin recursos.
+        </div>
+        <div class="practica-box">
+          <div class="practica-label">Una práctica concreta para esta semana</div>
+          <div class="practica-texto">
+            <p>Pensá en la última vez que intentaste cambiar algo en la organización y no funcionó. ¿El obstáculo era de proceso o era de persona? ¿Era una cuestión de qué hacer o de cómo alguien lidera, decide o se vincula con su equipo?</p>
+            <p>Si la respuesta es lo segundo, la pregunta que sigue es qué herramientas tenés para trabajar en ese nivel. Porque ese es el trabajo que hoy te están pidiendo.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+</div>`,
+  lider: `<div class="recurso-wrapper"><div class="recurso-header"><div class="recurso-label">Tu recurso gratuito · Líder / Manager</div><div class="recurso-titulo">Diagnóstico de Liderazgo Consciente</div><div class="recurso-subtitulo">5 dimensiones para entender cómo estás liderando hoy</div></div><div id="diag-container-lider"></div></div>`,
+  supervisor: `<div class="recurso-wrapper"><div class="recurso-header"><div class="recurso-label">Tu recurso gratuito · Supervisor</div><div class="recurso-titulo">Diagnóstico de Liderazgo Consciente</div><div class="recurso-subtitulo">5 dimensiones para entender cómo estás liderando hoy</div></div><div id="diag-container-supervisor"></div></div>`
+};
+
+// ===== TOGGLE ACORDEÓN =====
+function toggleDim(id) {
+  const item = document.getElementById(id);
+  if (!item) return;
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.dimension-item').forEach(el => el.classList.remove('open'));
+  if (!isOpen) {
+    item.classList.add('open');
+    setTimeout(() => item.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 100);
+  }
+}
+
+// ===== INICIALIZAR =====
+function init() {
+  const raw = localStorage.getItem('aleesha_datos');
+  const main = document.getElementById('main-content');
+
+  if (!raw) {
+    main.innerHTML = `
+      <div class="sin-datos">
+        <h2>No encontramos tus datos</h2>
+        <p>Para acceder al recurso gratuito primero tenés que completar el registro.</p>
+        <a href="index.html" class="btn-next" style="display:inline-block;text-decoration:none;padding:14px 28px;">
+          Volver al inicio →
+        </a>
+      </div>`;
+    return;
+  }
+
+  const datos = JSON.parse(raw);
+
+  // Validar que no hayan pasado más de 30 minutos
+  if (Date.now() - datos.timestamp > 30 * 60 * 1000) {
+    localStorage.removeItem('aleesha_datos');
+    main.innerHTML = `
+      <div class="sin-datos">
+        <h2>Tu sesión expiró</h2>
+        <p>Por seguridad la sesión dura 30 minutos. Volvé al inicio para empezar de nuevo.</p>
+        <a href="index.html" class="btn-next" style="display:inline-block;text-decoration:none;padding:14px 28px;">
+          Volver al inicio →
+        </a>
+      </div>`;
+    return;
+  }
+
+  // Recuperar datos
+  selectedRol = datos.rol;
+  selectedProblemas = new Set(datos.problemas);
+
+  // Calcular formaciones
+  const { primary, secondary, tertiary } = calcularRecomendaciones();
+  const insight = getInsight(primary, secondary, tertiary);
+
+  let programasHTML = buildProgramaCard(primary, true);
+  if (secondary && secondary !== primary) programasHTML += buildProgramaCard(secondary, false);
+  if (tertiary && tertiary !== primary && tertiary !== secondary) programasHTML += buildProgramaCard(tertiary, false);
+  const comboHTML = buildComboSugerido(primary, secondary, tertiary);
+
+  const esDiagnostico = ['lider', 'supervisor'].includes(selectedRol);
+
+  const bloqueFormaciones = !esDiagnostico ? `
+      <div class="programas-list">
+        ${programasHTML}
+        ${comboHTML ? '<div>' + comboHTML + '</div>' : ''}
+      </div>
+      <div class="cta-section">
+        <h4>¿Te identificaste? Hablemos.</h4>
+        <p>Contanos tu situación. Sin presentaciones, sin compromiso.</p>
+        <div class="cta-buttons">
+          <a href="https://wa.me/message/OY2XJPLGZKXMJ1" target="_blank" class="btn-whatsapp">
+            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+            Hablar por WhatsApp
+          </a>
+        </div>
+      </div>` : '';
+
+  const bloqueInsightCierre = !esDiagnostico ? `
+      <div class="insight-block" style="margin-top:8px;">
+        <p>${insight}</p>
+      </div>
+      <div class="cierre-universal">
+        <p>Lo que encontraste acá es el diagnóstico. El trabajo real empieza después. Mis formaciones están diseñadas para que dejes de reconocer los problemas y empieces a resolverlos, para que crezcas en tu rol y generes un impacto que se vea en los resultados de tu equipo.</p>
+      </div>` : '';
+
+  // Renderizar
+  main.innerHTML = `
+    <div style="max-width:680px; margin:0 auto;">
+
+      ${RECURSOS[selectedRol] || ''}
+
+      ${bloqueInsightCierre}
+
+      ${bloqueProgramas}
+
+      <div style="text-align:center; margin-top:32px; padding-bottom:32px;">
+        <a href="index.html" style="font-size:13px; color:var(--gray-text); text-decoration:none;">
+          ← Volver al inicio
+        </a>
+      </div>
+
+    </div>
+  `;
+
+  // Para lider y supervisor: iniciar el diagnóstico embebido
+  if (['lider', 'supervisor'].includes(selectedRol)) {
+    const containerId = selectedRol === 'lider' ? 'diag-container-lider' : 'diag-container-supervisor';
+    setTimeout(() => { initDiagnostico(containerId); }, 100);
+  } else {
+    // Abrir primera dimensión del acordeón para otros roles
+    const first = document.querySelector('.dimension-item');
+    if (first) first.classList.add('open');
+  }
+
+  // Limpiar localStorage
+  localStorage.removeItem('aleesha_datos');
+}
+
+
+// ===== DIAGNÓSTICO EMBEBIDO PARA LIDER Y SUPERVISOR =====
+const diagSections = [
   {
     name: "Toma de decisiones",
     desc: "Evaluamos tu capacidad para analizar situaciones complejas, considerar alternativas y asumir riesgos calculados en contextos de presión e incertidumbre.",
@@ -744,7 +2308,7 @@ const sections = [
       "Ante un ataque personal o un conflicto inesperado, logro regular mi reacción sin que mi lenguaje corporal o mis palabras se vuelvan defensivos.",
       "Cuando la carga de trabajo me supera, logro regular mi tensión sin descargarla en las personas más cercanas.",
       "Soy consciente de que mi estado emocional impacta en el clima del equipo y actúo para no amplificar la tensión o el desánimo.",
-      "Reconozco señales de estrés en mi forma de liderar (irritabilidad, falta de escucha, control excesivo) antes de que afecten al equipo.",
+      "Reconozco señales de estrés en mi forma de liderar antes de que afecten al equipo.",
       "Al comunicar malas noticias, sostengo la gravedad del problema sin perder foco ni transmitir pánico o evasión."
     ]
   },
@@ -755,7 +2319,7 @@ const sections = [
       "Cuando implemento cambios relevantes, escucho y abordo las resistencias del equipo en lugar de limitarme a comunicar los beneficios.",
       "Doy feedback crítico de forma directa y específica, aun cuando genera incomodidad o tensión en la relación.",
       "Cuando recibo críticas sobre mi gestión, escucho sin justificarme ni recurrir a mi posición de autoridad.",
-      "Integro aportes del equipo en las decisiones finales, incluso cuando contradicen mi enfoque inicial o complejizan la ejecución.",
+      "Integro aportes del equipo en las decisiones finales, incluso cuando contradicen mi enfoque inicial.",
       "En situaciones urgentes, comunico decisiones difíciles de forma directa y personal, aunque resulte incómodo."
     ]
   },
@@ -767,7 +2331,7 @@ const sections = [
       "Dedico tiempo a anticipar riesgos y escenarios futuros antes de que se conviertan en problemas urgentes.",
       "En contextos de incertidumbre externa, sostengo mensajes claros que ayudan al equipo a mantener foco y dirección.",
       "Reservo tiempo para el pensamiento estratégico aun cuando lo operativo y urgente compite constantemente por mi atención.",
-      "Reasigno recursos o presupuesto cuando un proyecto deja de ser prioritario, aun cuando eso genera tensiones internas."
+      "Reasigno recursos cuando un proyecto deja de ser prioritario, aun cuando eso genera tensiones internas."
     ]
   },
   {
@@ -783,270 +2347,104 @@ const sections = [
   }
 ];
 
-const options = [
+const diagOptions = [
   { num: 1, label: "Nunca o casi nunca" },
   { num: 2, label: "A veces" },
   { num: 3, label: "Frecuentemente" },
   { num: 4, label: "Siempre o casi siempre" }
 ];
 
-const profiles = [
+const diagProfiles = [
   {
     range: [25, 45],
     headline: "Liderás en modo de respuesta inmediata.",
     name: "Ejecutor Reactivo",
-    strengths: [
-      "Respondés con rapidez frente a problemas y situaciones imprevistas.",
-      "Mostrás alta disposición para hacerte cargo y sostener la operación diaria.",
-      "Actuás aun con información incompleta, evitando la parálisis ante la incertidumbre.",
-      "Transmitís sensación de acción y resolución en contextos de presión."
-    ],
-    blindspots: [
-      "Tendés a priorizar la urgencia por sobre la reflexión, lo que puede limitar la calidad de algunas decisiones.",
-      "Podés reaccionar más desde la presión del contexto que desde un criterio previamente definido.",
-      "Es frecuente que el impacto de tus decisiones se evalúe después de ejecutarlas, y no antes.",
-      "La velocidad constante puede dificultar la escucha profunda y la anticipación de riesgos."
-    ],
-    climate: [
-      "El equipo percibe capacidad de respuesta y resolución, especialmente en momentos críticos.",
-      "Puede aparecer cansancio, sensación de urgencia permanente o falta de espacio para aportar miradas alternativas.",
-      "La dinámica de trabajo suele volverse demandante, con foco en apagar incendios más que en construir previsibilidad."
-    ],
-    description: "Este perfil refleja un liderazgo fuertemente orientado a la acción y al sostén del día a día. Su principal desafío no está en hacer más, sino en empezar a introducir criterio donde hoy domina la reacción. Cuando la respuesta inmediata se vuelve el modo habitual de liderar, el costo suele aparecer en el mediano plazo: desgaste, errores evitables y menor claridad estratégica.",
-    keep: [
-      "Continuá respondiendo con rapidez frente a situaciones críticas y sosteniendo la operación cuando el contexto lo exige.",
-      "Mantené tu disposición a hacerte cargo y a dar respuestas claras en momentos de presión.",
-      "Seguí siendo una figura de referencia cuando aparecen problemas que requieren resolución inmediata."
-    ],
-    adjust: [
-      "Empezá a diferenciar qué situaciones requieren una respuesta urgente y cuáles permiten una breve pausa de análisis.",
-      "Incorporá instancias de revisión posterior a las decisiones tomadas, no solo para corregir, sino para aprender.",
-      "Ajustá el nivel de involucramiento directo: no todo problema necesita ser resuelto por vos para que funcione."
-    ],
-    start: [
-      "Definí criterios simples para la toma de decisiones que te permitan actuar con rapidez sin depender solo de la intuición.",
-      "Construí acuerdos claros con el equipo sobre expectativas, niveles de autonomía y manejo de errores.",
-      "Establecé espacios breves y regulares de retroalimentación para anticipar desvíos antes de que se vuelvan urgentes.",
-      "Empezá a entrenar la pausa consciente como parte del liderazgo, no como excepción."
-    ],
-    closing: "Esta hoja de ruta apunta a transformar la respuesta constante en liderazgo con mayor criterio y menor desgaste. El objetivo no es hacer menos, sino liderar mejor desde la acción, incorporando claridad y previsibilidad al día a día."
+    strengths: ["Respondés con rapidez frente a problemas y situaciones imprevistas.","Mostrás alta disposición para hacerte cargo y sostener la operación diaria.","Actuás aun con información incompleta, evitando la parálisis ante la incertidumbre."],
+    blindspots: ["Tendés a priorizar la urgencia por sobre la reflexión, lo que puede limitar la calidad de algunas decisiones.","Podés reaccionar más desde la presión del contexto que desde un criterio previamente definido.","La velocidad constante puede dificultar la escucha profunda y la anticipación de riesgos."],
+    description: "Este perfil refleja un liderazgo fuertemente orientado a la acción y al sostén del día a día. Su principal desafío no está en hacer más, sino en empezar a introducir criterio donde hoy domina la reacción.",
+    keep: ["Continuá respondiendo con rapidez frente a situaciones críticas.","Mantené tu disposición a hacerte cargo en momentos de presión."],
+    adjust: ["Empezá a diferenciar qué situaciones requieren respuesta urgente y cuáles permiten una breve pausa de análisis.","Incorporá instancias de revisión posterior a las decisiones tomadas."],
+    start: ["Definí criterios simples para la toma de decisiones.","Construí acuerdos claros con el equipo sobre expectativas y niveles de autonomía.","Establecé espacios breves y regulares de retroalimentación."],
+    closing: "Esta hoja de ruta apunta a transformar la respuesta constante en liderazgo con mayor criterio y menor desgaste."
   },
   {
     range: [46, 65],
     headline: "Liderás con mayor conciencia, pero sin estabilidad plena.",
     name: "Gestor en Transición",
-    strengths: [
-      "Empezás a cuestionar tus formas habituales de decidir y liderar, incorporando mayor reflexión antes de actuar.",
-      "Mostrás apertura para escuchar otras miradas y considerar el impacto de tus decisiones en las personas y en el contexto.",
-      "Alternás entre la acción y la pausa, buscando equilibrar resultados con mayor conciencia del proceso.",
-      "Reconocés que no todas las situaciones se resuelven con velocidad y que el liderazgo requiere lectura contextual."
-    ],
-    blindspots: [
-      "Podés oscilar entre reaccionar rápido y frenar en exceso, generando cierta inconsistencia en la toma de decisiones.",
-      "En momentos de presión, tendés a volver a modos conocidos aun cuando sabés que podrían no ser los más adecuados.",
-      "La revisión constante puede derivar en postergar definiciones importantes o comunicar mensajes ambiguos al equipo.",
-      "Aún no siempre confiás en tu propio criterio cuando este entra en tensión con las demandas del entorno."
-    ],
-    climate: [
-      "El equipo percibe mayor apertura, escucha y disposición al diálogo.",
-      "Se genera un clima más reflexivo, aunque a veces con sensación de indefinición o falta de dirección clara.",
-      "Pueden convivir expectativas distintas dentro del equipo según el momento y el estilo que adoptes en cada situación."
-    ],
-    description: "Este perfil refleja un liderazgo en transición. Ya no operás exclusivamente desde la reacción, pero todavía no consolidaste un criterio estable que sostenga tus decisiones de forma consistente. El desafío principal no está en sumar más herramientas, sino en ordenar y afirmar el criterio que estás empezando a construir.",
-    keep: [
-      "Continuá cuestionando tus decisiones y abriendo espacio a otras miradas antes de actuar.",
-      "Mantené la escucha activa y la intención de considerar el impacto de tus acciones en las personas y en los resultados.",
-      "Sostené la búsqueda de equilibrio entre acción y reflexión como parte de tu forma de liderar."
-    ],
-    adjust: [
-      "Reducí la oscilación entre frenar en exceso y reaccionar desde la urgencia; esa variabilidad genera incertidumbre.",
-      "Ajustá la comunicación de tus decisiones para evitar mensajes ambiguos o poco concluyentes.",
-      "Empezá a cerrar definiciones con mayor claridad, aun cuando no tengas toda la información disponible."
-    ],
-    start: [
-      "Consolidá criterios explícitos para decidir que te permitan sostener coherencia incluso bajo presión.",
-      "Definí prioridades claras y compartilas con el equipo para alinear expectativas y foco.",
-      "Incorporá instancias de revisión consciente de decisiones clave para fortalecer aprendizaje y consistencia.",
-      "Entrená la confianza en tu propio criterio, especialmente cuando entra en tensión con las demandas del entorno."
-    ],
-    closing: "El desarrollo en este perfil pasa por ordenar lo que ya empezaste a construir. Cuando la revisión se transforma en claridad y la claridad en acción coherente, el liderazgo gana dirección, previsibilidad y mayor impacto en el tiempo."
+    strengths: ["Empezás a cuestionar tus formas habituales de decidir y liderar.","Mostrás apertura para escuchar otras miradas.","Reconocés que no todas las situaciones se resuelven con velocidad."],
+    blindspots: ["Podés oscilar entre reaccionar rápido y frenar en exceso, generando inconsistencia.","En momentos de presión, tendés a volver a modos conocidos.","La revisión constante puede derivar en postergar definiciones importantes."],
+    description: "Este perfil refleja un liderazgo en transición. Ya no operás exclusivamente desde la reacción, pero todavía no consolidaste un criterio estable que sostenga tus decisiones de forma consistente.",
+    keep: ["Continuá cuestionando tus decisiones y abriendo espacio a otras miradas.","Mantené la escucha activa y la intención de considerar el impacto de tus acciones."],
+    adjust: ["Reducí la oscilación entre frenar en exceso y reaccionar desde la urgencia.","Ajustá la comunicación de tus decisiones para evitar mensajes ambiguos."],
+    start: ["Consolidá criterios explícitos para decidir que te permitan sostener coherencia bajo presión.","Definí prioridades claras y compartilas con el equipo."],
+    closing: "El desarrollo en este perfil pasa por ordenar lo que ya empezaste a construir. Cuando la revisión se transforma en claridad y la claridad en acción coherente, el liderazgo gana dirección y mayor impacto."
   },
   {
     range: [66, 85],
     headline: "Liderás de manera estratégica y consciente.",
     name: "Impulsor Estratégico",
-    strengths: [
-      "Tomás decisiones desde un criterio deliberado, integrando variables de negocio, personas y contexto antes de actuar.",
-      "Mostrás capacidad para pausar, observar y elegir conscientemente el curso de acción más adecuado según el impacto esperado.",
-      "Sostenés coherencia entre lo que pensás, comunicás y ejecutás, incluso en escenarios complejos o de presión.",
-      "Priorizás la construcción de sentido y dirección, evitando respuestas impulsivas o meramente reactivas."
-    ],
-    blindspots: [
-      "Podés confiar en exceso en tu propio criterio y postergar contrastes externos que desafíen tu mirada.",
-      "Existe riesgo de acomodarte en un estilo que 'funciona', reduciendo la revisión crítica de decisiones pasadas.",
-      "En contextos que requieren velocidad extrema, tu necesidad de análisis puede demorar definiciones clave.",
-      "Podés subestimar la necesidad de intervenciones más directas cuando el equipo espera mayor claridad o firmeza."
-    ],
-    climate: [
-      "El equipo percibe claridad, coherencia y una sensación de liderazgo estable y confiable.",
-      "Se promueve un entorno de reflexión, aprendizaje y responsabilidad compartida.",
-      "En momentos de alta urgencia, puede generarse expectativa de mayor rapidez o explicitación de decisiones."
-    ],
-    description: "Este perfil refleja un liderazgo sólido y consciente, con alto potencial de impacto sostenido. El principal desafío no está en corregir el estilo, sino en seguir desarrollándolo, evitando que la claridad se transforme en zona de confort y manteniendo activa la revisión de decisiones, conversaciones y resultados.",
-    keep: [
-      "Mantené la toma de decisiones deliberada, integrando contexto, personas y objetivos antes de actuar.",
-      "Sostené la coherencia entre lo que pensás, comunicás y hacés como eje de tu liderazgo.",
-      "Continuá generando espacios de reflexión y sentido que permitan al equipo comprender el para qué de las decisiones."
-    ],
-    adjust: [
-      "Evitá asumir que el criterio ya está consolidado; incluso los estilos que funcionan necesitan revisión periódica.",
-      "Ajustá el nivel de intervención directa cuando el equipo requiere mayor claridad o firmeza frente a decisiones críticas.",
-      "Revisá si tu foco en el equilibrio y la reflexión puede estar postergando definiciones necesarias en contextos de alta urgencia."
-    ],
-    start: [
-      "Profundizá la revisión estratégica de tus decisiones clave, no solo desde el resultado, sino desde el impacto generado.",
-      "Incorporá conversaciones más desafiantes cuando el contexto lo requiere, aun si tensionan la armonía momentánea.",
-      "Fortalecé la explicitación de criterios para que el equipo entienda no solo qué se decide, sino desde dónde se decide.",
-      "Trabajá la actualización continua de tu liderazgo, entendiendo que la conciencia no es un estado alcanzado, sino una práctica."
-    ],
+    strengths: ["Tomás decisiones desde un criterio deliberado, integrando variables de negocio, personas y contexto.","Sostenés coherencia entre lo que pensás, comunicás y ejecutás.","Priorizás la construcción de sentido y dirección."],
+    blindspots: ["Podés confiar en exceso en tu propio criterio y postergar contrastes externos.","En contextos que requieren velocidad extrema, tu necesidad de análisis puede demorar definiciones clave.","Podés subestimar la necesidad de intervenciones más directas cuando el equipo espera mayor claridad."],
+    description: "Este perfil refleja un liderazgo sólido y consciente, con alto potencial de impacto sostenido. El principal desafío no está en corregir el estilo, sino en seguir desarrollándolo.",
+    keep: ["Mantené la toma de decisiones deliberada.","Sostené la coherencia entre lo que pensás, comunicás y hacés."],
+    adjust: ["Evitá asumir que el criterio ya está consolidado.","Revisá si tu foco en el equilibrio puede estar postergando definiciones necesarias en contextos de alta urgencia."],
+    start: ["Profundizá la revisión estratégica de tus decisiones clave.","Incorporá conversaciones más desafiantes cuando el contexto lo requiere."],
     closing: "Evolucionar en este nivel implica seguir desarrollando. No para corregir lo que está mal, sino para evitar que lo que hoy funciona se transforme en límite mañana."
   },
   {
     range: [86, 100],
     headline: "Liderás con consciencia plena e impacto transformador.",
     name: "Líder Transformacional",
-    strengths: [
-      "Integrás con naturalidad la visión estratégica y la gestión de personas, tomando decisiones que consideran el corto y largo plazo simultáneamente.",
-      "Mostrás una coherencia sostenida entre lo que pensás, comunicás y ejecutás, incluso en los escenarios de mayor presión.",
-      "Generás entornos donde otros líderes crecen, se desarrollan y toman decisiones con mayor autonomía y criterio propio.",
-      "Sostenés conversaciones difíciles con claridad y cuidado, sin evitar la incomodidad necesaria para el crecimiento del equipo.",
-      "Tu presencia genera estabilidad, confianza y dirección, especialmente cuando el contexto externo es volátil o desafiante."
-    ],
-    blindspots: [
-      "El alto nivel de coherencia y criterio puede generar expectativas muy elevadas en el equipo, que a veces necesita permiso explícito para equivocarse.",
-      "Existe riesgo de que tu claridad estratégica se transforme en una voz tan dominante que inhiba la emergencia de nuevas ideas.",
-      "Puede aparecer la tendencia a sostener más control del necesario sobre decisiones que ya podrían ser completamente delegadas.",
-      "El liderazgo en este nivel puede volverse solitario si no se construyen activamente espacios de intercambio con pares de igual nivel."
-    ],
-    climate: [
-      "El equipo experimenta un entorno de alto rendimiento con propósito claro, donde la exigencia y el cuidado coexisten.",
-      "Se promueve una cultura de responsabilidad, aprendizaje continuo y autonomía creciente.",
-      "Las personas a tu alrededor tienden a crecer más rápido, asumir más responsabilidad y desarrollar su propio criterio.",
-      "El riesgo en este nivel no es el clima, sino la dependencia: que el equipo funcione bien solo cuando vos estás presente."
-    ],
-    description: "Este perfil refleja un liderazgo que ya no se mide solo por resultados propios, sino por la capacidad de multiplicar impacto en otros. Llegaste a un nivel donde el crecimiento personal ya no es suficiente — el verdadero desafío es transformarte en quien potencia el liderazgo de quienes te rodean. Eso requiere soltar, confiar y construir sistemas que funcionen más allá de tu presencia directa.",
-    keep: [
-      "Sostené la coherencia entre pensamiento, comunicación y acción como eje central de tu forma de liderar.",
-      "Continuá generando entornos donde la exigencia y el cuidado de las personas son complementarios.",
-      "Mantené la práctica de las conversaciones difíciles: es una de tus fortalezas más valiosas y más escasas.",
-      "Preservá el espacio para el pensamiento estratégico aunque lo operativo compita constantemente por tu atención."
-    ],
-    adjust: [
-      "Revisá dónde todavía sostenés control sobre decisiones que ya podrían ser completamente del equipo.",
-      "Ajustá la forma en que comunicás tu criterio para que inspire y oriente, sin inhibir la emergencia de miradas diferentes.",
-      "Generá explícitamente permiso para el error dentro del equipo: no todos tienen tu nivel de tolerancia a la incertidumbre.",
-      "Buscá activamente espacios de intercambio con otros líderes de tu nivel para evitar el aislamiento que suele acompañar este perfil."
-    ],
-    start: [
-      "Definí de forma consciente cuál es tu legado de liderazgo: qué capacidades, culturas y líderes querés haber desarrollado.",
-      "Construí sistemas, procesos y acuerdos que sostengan el funcionamiento del equipo más allá de tu presencia directa.",
-      "Considerá cómo tu experiencia y criterio pueden impactar en otros líderes fuera de tu equipo inmediato.",
-      "Profundizá en las dimensiones con menor puntaje de este diagnóstico: en este nivel, los matices marcan la diferencia."
-    ],
-    closing: "Liderar en este nivel es una responsabilidad que va más allá del rol. El desafío ya no es crecer vos, sino crear las condiciones para que otros crezcan. Ahí es donde el liderazgo se vuelve verdaderamente transformador."
+    strengths: ["Integrás con naturalidad la visión estratégica y la gestión de personas.","Mostrás coherencia sostenida entre lo que pensás, comunicás y ejecutás.","Generás entornos donde otros líderes crecen y se desarrollan."],
+    blindspots: ["El alto nivel de coherencia puede generar expectativas muy elevadas en el equipo.","Existe riesgo de que tu claridad estratégica inhiba la emergencia de nuevas ideas.","El liderazgo en este nivel puede volverse solitario sin espacios de intercambio con pares."],
+    description: "Este perfil refleja un liderazgo que ya no se mide solo por resultados propios, sino por la capacidad de multiplicar impacto en otros.",
+    keep: ["Sostené la coherencia entre pensamiento, comunicación y acción.","Continuá generando entornos donde la exigencia y el cuidado de las personas son complementarios."],
+    adjust: ["Revisá dónde todavía sostenés control sobre decisiones que ya podrían ser del equipo.","Generá explícitamente permiso para el error dentro del equipo."],
+    start: ["Definí de forma consciente cuál es tu legado de liderazgo.","Construí sistemas que sostengan el funcionamiento del equipo más allá de tu presencia directa."],
+    closing: "Liderar en este nivel es una responsabilidad que va más allá del rol. El desafío ya no es crecer vos, sino crear las condiciones para que otros crezcan."
   }
 ];
 
-// State
-let currentSection = 0;
-let answers = {};
-let userEmail = '';
+// Estado del diagnóstico embebido
+let diagState = {
+  currentSection: 0,
+  answers: {},
+  containerId: null
+};
 
-function getStoredEmails() {
-  try {
-    return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
-  } catch(e) { return []; }
+function initDiagnostico(containerId) {
+  diagState = { currentSection: 0, answers: {}, containerId };
+  renderDiagSection();
 }
 
-function storeEmail(email) {
-  const emails = getStoredEmails();
-  emails.push(email.toLowerCase());
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(emails));
-}
+function renderDiagSection() {
+  const container = document.getElementById(diagState.containerId);
+  if (!container) return;
+  const s = diagSections[diagState.currentSection];
+  const totalQ = diagSections.reduce((a, sec) => a + sec.questions.length, 0);
+  const doneQ = diagSections.slice(0, diagState.currentSection).reduce((a, sec) => a + sec.questions.length, 0);
+  const pct = Math.round((doneQ / totalQ) * 100);
 
-function emailAlreadyUsed(email) {
-  return getStoredEmails().includes(email.toLowerCase());
-}
-
-function showScreen(id) {
-  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-function startDiagnostic() {
-  const emailInput = document.getElementById('email-input');
-  const email = emailInput.value.trim();
-  document.getElementById('email-error').style.display = 'none';
-  document.getElementById('email-used').style.display = 'none';
-
-  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-    document.getElementById('email-error').style.display = 'block';
-    return;
-  }
-
-  if (emailAlreadyUsed(email)) {
-    document.getElementById('email-used').style.display = 'block';
-    return;
-  }
-
-  userEmail = email;
-  currentSection = 0;
-  answers = {};
-  showSectionIntro();
-}
-
-function showSectionIntro() {
-  const s = sections[currentSection];
-  const totalQ = sections.reduce((a, sec) => a + sec.questions.length, 0);
-  const doneQ = sections.slice(0, currentSection).reduce((a, sec) => a + sec.questions.length, 0);
-
-  document.getElementById('section-intro-content').innerHTML = `
-    <div class="section-header" style="border-radius:16px; margin-bottom:0">
-      <div class="section-num">Dimensión ${currentSection + 1} de ${sections.length}</div>
+  let html = `
+    <div class="diag-progress-label">Pregunta ${doneQ + 1}–${doneQ + s.questions.length} de ${totalQ}</div>
+    <div class="diag-progress-wrap"><div class="diag-progress-fill" style="width:${pct}%"></div></div>
+    <div class="diag-section-header">
+      <div class="diag-section-num">Dimensión ${diagState.currentSection + 1} de ${diagSections.length}</div>
       <h3>${s.name}</h3>
       <p>${s.desc}</p>
     </div>
+    <div class="diag-questions-card">
   `;
-  showScreen('screen-section-intro');
-}
-
-function showQuestions() {
-  renderQuestions();
-  showScreen('screen-questions');
-}
-
-function renderQuestions() {
-  const s = sections[currentSection];
-  const totalQ = sections.reduce((a, sec) => a + sec.questions.length, 0);
-  const doneQ = sections.slice(0, currentSection).reduce((a, sec) => a + sec.questions.length, 0);
-  const pct = Math.round((doneQ / totalQ) * 100);
-
-  document.getElementById('progress-label').textContent = `Pregunta ${doneQ + 1}–${doneQ + s.questions.length} de ${totalQ}`;
-  document.getElementById('progress-bar').style.width = pct + '%';
-
-  let html = `<div class="section-header"><div class="section-num">Dimensión ${currentSection + 1} de ${sections.length}</div><h3>${s.name}</h3></div>`;
-  html += '<div class="questions-card">';
 
   s.questions.forEach((q, qi) => {
-    const qKey = `${currentSection}-${qi}`;
-    html += `<div class="question-item">
-      <div class="question-num">Pregunta ${doneQ + qi + 1}</div>
-      <div class="question-text">${q}</div>
-      <div class="options-grid">`;
-    options.forEach(opt => {
-      const selected = answers[qKey] === opt.num ? 'selected' : '';
-      html += `<button class="option-btn ${selected}" onclick="selectAnswer('${qKey}', ${opt.num}, this)">
+    const qKey = `${diagState.currentSection}-${qi}`;
+    html += `<div class="diag-question-item">
+      <div class="diag-question-num">Pregunta ${doneQ + qi + 1}</div>
+      <div class="diag-question-text">${q}</div>
+      <div class="diag-options-grid">`;
+    diagOptions.forEach(opt => {
+      const selected = diagState.answers[qKey] === opt.num ? 'selected' : '';
+      html += `<button class="diag-option-btn ${selected}" onclick="diagSelectAnswer('${qKey}', ${opt.num}, this)">
         <span class="opt-num">${opt.num}</span>
         <span class="opt-label">${opt.label}</span>
       </button>`;
@@ -1054,171 +2452,183 @@ function renderQuestions() {
     html += `</div></div>`;
   });
 
-  html += '</div>';
-  document.getElementById('questions-content').innerHTML = html;
+  html += `</div>
+    <div class="diag-unanswered" id="diag-unanswered-${diagState.containerId}">Por favor respondé todas las preguntas antes de continuar.</div>
+    <div class="diag-nav">
+      <button class="diag-btn-prev" id="diag-prev-${diagState.containerId}" onclick="diagPrev()" style="${diagState.currentSection > 0 ? '' : 'display:none'}">← Anterior</button>
+      <button class="diag-btn-next" onclick="diagNext()">${diagState.currentSection < diagSections.length - 1 ? 'Siguiente →' : 'Ver mi resultado →'}</button>
+    </div>
+  `;
 
-  document.getElementById('btn-prev').style.display = currentSection > 0 ? 'block' : 'none';
-  document.getElementById('btn-next').textContent = currentSection < sections.length - 1 ? 'Siguiente →' : 'Ver mi resultado →';
+  container.innerHTML = html;
 }
 
-function selectAnswer(key, val, btn) {
-  answers[key] = val;
+function diagSelectAnswer(key, val, btn) {
+  diagState.answers[key] = val;
   const grid = btn.parentElement;
-  grid.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
+  grid.querySelectorAll('.diag-option-btn').forEach(b => b.classList.remove('selected'));
   btn.classList.add('selected');
-  document.getElementById('unanswered-msg').style.display = 'none';
+  document.getElementById('diag-unanswered-' + diagState.containerId).style.display = 'none';
 }
 
-function allAnswered() {
-  const s = sections[currentSection];
+function diagAllAnswered() {
+  const s = diagSections[diagState.currentSection];
   for (let qi = 0; qi < s.questions.length; qi++) {
-    if (answers[`${currentSection}-${qi}`] === undefined) return false;
+    if (diagState.answers[`${diagState.currentSection}-${qi}`] === undefined) return false;
   }
   return true;
 }
 
-function nextSection() {
-  if (!allAnswered()) {
-    document.getElementById('unanswered-msg').style.display = 'block';
+function diagNext() {
+  if (!diagAllAnswered()) {
+    document.getElementById('diag-unanswered-' + diagState.containerId).style.display = 'block';
     return;
   }
-  document.getElementById('unanswered-msg').style.display = 'none';
-
-  if (currentSection < sections.length - 1) {
-    currentSection++;
-    showSectionIntro();
+  if (diagState.currentSection < diagSections.length - 1) {
+    diagState.currentSection++;
+    renderDiagSection();
+    document.getElementById(diagState.containerId).scrollIntoView({ behavior: 'smooth', block: 'start' });
   } else {
-    showResults();
+    showDiagResults();
   }
 }
 
-function prevSection() {
-  if (currentSection > 0) {
-    currentSection--;
-    showSectionIntro();
+function diagPrev() {
+  if (diagState.currentSection > 0) {
+    diagState.currentSection--;
+    renderDiagSection();
   }
 }
 
-function calcScores() {
-  const dimScores = sections.map((s, si) => {
+function diagCalcScores() {
+  return diagSections.map((s, si) => {
     let total = 0;
-    s.questions.forEach((_, qi) => { total += answers[`${si}-${qi}`] || 0; });
+    s.questions.forEach((_, qi) => { total += diagState.answers[`${si}-${qi}`] || 0; });
     return { name: s.name, score: total, max: s.questions.length * 4 };
   });
+}
+
+function diagGetProfile(total) {
+  return diagProfiles.find(p => total >= p.range[0] && total <= p.range[1]) || diagProfiles[diagProfiles.length - 1];
+}
+
+function showDiagResults() {
+  const dimScores = diagCalcScores();
   const total = dimScores.reduce((a, d) => a + d.score, 0);
-  return { dimScores, total, max: sections.reduce((a, s) => a + s.questions.length, 0) * 4 };
-}
+  const max = diagSections.reduce((a, s) => a + s.questions.length, 0) * 4;
+  const profile = diagGetProfile(total);
+  const container = document.getElementById(diagState.containerId);
 
-function getProfile(total) {
-  return profiles.find(p => total >= p.range[0] && total <= p.range[1]) || profiles[profiles.length - 1];
-}
+  container.innerHTML = `
+    <div class="diag-result-header">
+      <div class="diag-result-tag">Tu resultado</div>
+      <h2>${profile.headline}</h2>
+      <div class="diag-profile-name">Perfil: ${profile.name}</div>
+      <div class="diag-total-score">Puntaje total<strong>${total} / ${max}</strong></div>
+    </div>
 
-function showResults() {
-  showScreen('screen-loading');
-  storeEmail(userEmail);
+    <div class="diag-scores-card">
+      <h3>Resultados por dimensión</h3>
+      ${dimScores.map(d => `
+        <div class="diag-dim-item">
+          <div class="diag-dim-header">
+            <span class="diag-dim-name">${d.name}</span>
+            <span class="diag-dim-val">${d.score} / ${d.max}</span>
+          </div>
+          <div class="diag-dim-bar"><div class="diag-dim-bar-fill" style="width:${Math.round((d.score/d.max)*100)}%"></div></div>
+        </div>
+      `).join('')}
+    </div>
 
+    <div class="diag-profile-card">
+      <div class="diag-intro-quote">"Este diagnóstico no define quién sos como líder, sino cómo estás liderando hoy. El valor está en lo que elijas revisar y ajustar a partir de ahora."</div>
+      <div class="diag-profile-section">
+        <h4>Fortalezas principales</h4>
+        <ul class="diag-profile-list">${profile.strengths.map(s => `<li>${s}</li>`).join('')}</ul>
+      </div>
+      <div class="diag-profile-section">
+        <h4>Áreas de desarrollo</h4>
+        <ul class="diag-profile-list">${profile.blindspots.map(s => `<li>${s}</li>`).join('')}</ul>
+      </div>
+      <div class="diag-profile-section">
+        <h4>Tu perfil</h4>
+        <p style="font-size:14px;line-height:1.7;color:#4a6080">${profile.description}</p>
+      </div>
+      <div class="diag-profile-section">
+        <h4>Claves para evolucionar tu liderazgo</h4>
+        <div class="diag-evolution-grid">
+          <div class="diag-evolution-block"><h5>Qué mantener</h5><ul>${profile.keep.map(s => `<li>${s}</li>`).join('')}</ul></div>
+          <div class="diag-evolution-block"><h5>Qué ajustar</h5><ul>${profile.adjust.map(s => `<li>${s}</li>`).join('')}</ul></div>
+          <div class="diag-evolution-block"><h5>Qué empezar a hacer</h5><ul>${profile.start.map(s => `<li>${s}</li>`).join('')}</ul></div>
+        </div>
+      </div>
+      <div class="diag-profile-closing">${profile.closing}</div>
+    </div>
+  `;
+
+  // Animar barras
   setTimeout(() => {
-    const { dimScores, total, max } = calcScores();
-    const profile = getProfile(total);
+    container.querySelectorAll('.diag-dim-bar-fill').forEach(bar => {
+      const w = bar.style.width;
+      bar.style.width = '0';
+      setTimeout(() => { bar.style.width = w; }, 100);
+    });
+  }, 200);
 
-    let html = `
-      <div class="result-header">
-        <div class="result-tag">Tu resultado</div>
-        <h2>${profile.headline}</h2>
-        <div class="profile-name">Perfil: ${profile.name}</div>
-        <div class="total-score">Puntaje total<strong>${total} / ${max}</strong></div>
-      </div>
-
-      <div class="scores-card">
-        <h3>Resultados por dimensión</h3>
-        ${dimScores.map(d => `
-          <div class="dim-score-item">
-            <div class="dim-score-header">
-              <span class="dim-score-name">${d.name}</span>
-              <span class="dim-score-val">${d.score} / ${d.max}</span>
-            </div>
-            <div class="dim-bar"><div class="dim-bar-fill" style="width:${Math.round((d.score/d.max)*100)}%"></div></div>
-          </div>
-        `).join('')}
-      </div>
-
-      <div class="profile-card">
-        <div class="intro-quote">
-          "Este diagnóstico no define quién sos como líder, sino cómo estás liderando hoy. El valor está en lo que elijas revisar y ajustar a partir de ahora."
-        </div>
-
-        <div class="profile-section">
-          <h4>Fortalezas principales</h4>
-          <ul class="profile-list">
-            ${profile.strengths.map(s => `<li>${s}</li>`).join('')}
-          </ul>
-        </div>
-
-        <div class="profile-section">
-          <h4>Áreas de desarrollo</h4>
-          <ul class="profile-list">
-            ${profile.blindspots.map(s => `<li>${s}</li>`).join('')}
-          </ul>
-        </div>
-
-        <div class="profile-section">
-          <h4>Impacto en el clima laboral</h4>
-          <ul class="profile-list">
-            ${profile.climate.map(s => `<li>${s}</li>`).join('')}
-          </ul>
-        </div>
-
-        <div class="profile-section">
-          <h4>Tu perfil</h4>
-          <p style="font-size:14px;line-height:1.7;color:var(--text-mid)">${profile.description}</p>
-        </div>
-
-        <div class="profile-section">
-          <h4>Claves para evolucionar tu liderazgo</h4>
-          <div class="evolution-grid">
-            <div class="evolution-block">
-              <h5>Qué mantener</h5>
-              <ul>${profile.keep.map(s => `<li>${s}</li>`).join('')}</ul>
-            </div>
-            <div class="evolution-block">
-              <h5>Qué ajustar</h5>
-              <ul>${profile.adjust.map(s => `<li>${s}</li>`).join('')}</ul>
-            </div>
-            <div class="evolution-block">
-              <h5>Qué empezar a hacer</h5>
-              <ul>${profile.start.map(s => `<li>${s}</li>`).join('')}</ul>
-            </div>
-          </div>
-        </div>
-
-        <div class="profile-closing">${profile.closing}</div>
-        <p style="text-align:center;font-weight:700;color:var(--blue-dark);margin-top:20px;font-size:16px;">¡La transformación en tus manos!</p>
-      </div>
-
-      <div class="cta-card">
-        <h3>¿Querés trabajar en tu evolución?</h3>
-        <p>A partir de este diagnóstico podemos diseñar juntos un camino de desarrollo concreto. Workshops, programas de acompañamiento, sesiones individuales y formaciones a medida.</p>
-        <a href="https://desarrollodeliderazgo.my.canva.site/aleeshagrowth" class="cta-btn">Conocé los programas →</a>
-        <br><br>
-        <p style="opacity:0.9;font-size:15px;line-height:1.6;margin-bottom:16px;max-width:460px;margin-left:auto;margin-right:auto;">¿Querés trabajar tu liderazgo en profundidad?</p>
-        <a href="https://calendly.com/virginiacardinaux-aleeshagrowth/sesion" class="cta-btn-outline">Agendá una sesión conmigo →</a>
-      </div>
-    `;
-
-    document.getElementById('results-content').innerHTML = html;
-    showScreen('screen-results');
-
-    // Animate bars
-    setTimeout(() => {
-      document.querySelectorAll('.dim-bar-fill').forEach(bar => {
-        const w = bar.style.width;
-        bar.style.width = '0';
-        setTimeout(() => { bar.style.width = w; }, 100);
-      });
-    }, 200);
-
-  }, 2000);
+  // Mostrar formaciones después del diagnóstico
+  setTimeout(() => {
+    showFormacionesDespuesDiag();
+  }, 500);
 }
+
+function showFormacionesDespuesDiag() {
+  const { primary, secondary, tertiary } = calcularRecomendaciones();
+  const insight = getInsight(primary, secondary, tertiary);
+  let programasHTML = buildProgramaCard(primary, true);
+  if (secondary && secondary !== primary) programasHTML += buildProgramaCard(secondary, false);
+  if (tertiary && tertiary !== primary && tertiary !== secondary) programasHTML += buildProgramaCard(tertiary, false);
+  const comboHTML = buildComboSugerido(primary, secondary, tertiary);
+
+  const formDiv = document.createElement('div');
+  formDiv.style.animation = 'fadeUp 0.4s ease both';
+  formDiv.innerHTML = `
+    <div class="cierre-universal">
+      <p>Lo que encontraste acá es el diagnóstico. El trabajo real empieza después. Mis formaciones están diseñadas para que dejes de reconocer los problemas y empieces a resolverlos, para que crezcas en tu rol y generes un impacto que se vea en los resultados de tu equipo.</p>
+    </div>
+    <div class="insight-block" style="margin-top:8px;">
+      <p>${insight}</p>
+    </div>
+    <div class="programas-list">
+      ${programasHTML}
+      ${comboHTML ? `<div>${comboHTML}</div>` : ''}
+    </div>
+    <div class="cta-section">
+      <h4>¿Te identificaste? Hablemos.</h4>
+      <p>Contanos tu situación. Sin presentaciones, sin compromiso.</p>
+      <div class="cta-buttons">
+        <a href="https://wa.me/message/OY2XJPLGZKXMJ1" target="_blank" class="btn-whatsapp">
+          <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+          Hablar por WhatsApp
+        </a>
+      </div>
+    </div>
+    <div style="text-align:center; margin-top:32px; padding-bottom:32px;">
+      <a href="index.html" style="font-size:13px; color:var(--gray-text); text-decoration:none;">← Volver al inicio</a>
+    </div>
+  `;
+
+  // Agregar después del contenedor del diagnóstico
+  const diagContainer = document.getElementById(diagState.containerId);
+  if (diagContainer && diagContainer.parentNode) {
+    diagContainer.parentNode.appendChild(formDiv);
+    setTimeout(() => {
+      formDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 300);
+  }
+}
+
+// Ejecutar al cargar
+init();
 </script>
 </body>
 </html>
